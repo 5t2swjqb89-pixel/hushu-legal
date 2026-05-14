@@ -1,183 +1,643 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gizlilik Politikası · Hushu</title>
+<title>Privacy Policy · Hushu</title>
 <style>
-  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 40px auto; padding: 24px; background: #F5EBD8; color: #2A1F18; line-height: 1.7; }
-  h1 { font-size: 32px; margin-bottom: 8px; }
-  h2 { font-size: 20px; margin-top: 32px; color: #C9962D; border-bottom: 1px solid #E8DFD0; padding-bottom: 6px; }
-  .meta { color: #6B5F50; font-size: 14px; font-style: italic; }
-  .lang-switch { margin-bottom: 24px; }
-  .lang-switch a { color: #C9962D; text-decoration: none; margin-right: 16px; }
-  .lang-switch a.active { font-weight: bold; text-decoration: underline; }
-  a { color: #C9962D; }
-  .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #E8DFD0; color: #6B5F50; font-size: 13px; }
+  :root {
+    --bg: #FFFFFF;
+    --bg-subtle: #FAFAF7;
+    --text: #0E0E0E;
+    --text-muted: #595959;
+    --text-faint: #8E8E8E;
+    --accent: #C9962D;
+    --hairline: #E8E8E8;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .top-bar {
+    border-bottom: 1px solid var(--hairline);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.9);
+  }
+  .top-bar-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .top-brand {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .top-brand span { color: var(--accent); }
+  .top-nav {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .top-nav a.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .top-nav a.nav-link:hover { color: var(--accent); }
+  .lang-switch {
+    display: flex;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .lang-switch a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-switch a:hover { background: var(--bg-subtle); }
+  .lang-switch a.active { background: var(--text); color: white; }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+  .label-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    margin: 0 0 16px;
+    color: var(--text);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+  }
+  .meta {
+    font-size: 14px;
+    color: var(--text-faint);
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .intro {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0 0 64px;
+    font-weight: 400;
+  }
+  section { margin-top: 56px; }
+  section:first-of-type { margin-top: 0; }
+  .section-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    background: var(--bg-subtle);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 20px;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+  }
+  p {
+    margin: 0 0 16px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  strong { font-weight: 600; color: var(--text); }
+  ul {
+    padding-left: 0;
+    list-style: none;
+    margin: 16px 0;
+  }
+  ul li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 10px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  a:hover { border-bottom-color: var(--accent); }
+  .callout {
+    margin: 32px 0;
+    padding: 20px 24px;
+    background: var(--bg-subtle);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+  }
+  .callout p { margin: 0; font-size: 15px; color: var(--text-muted); }
+  .contact-section {
+    margin-top: 80px;
+    padding: 48px 40px;
+    background: var(--bg-subtle);
+    border-radius: 16px;
+    text-align: center;
+  }
+  .contact-section .label-eyebrow { margin-bottom: 16px; }
+  .contact-section h3 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 24px;
+    letter-spacing: -0.5px;
+  }
+  .contact-section .email {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 17px;
+  }
+  .contact-section .meta-info {
+    font-size: 14px;
+    color: var(--text-faint);
+    line-height: 1.8;
+  }
+  .footer {
+    margin-top: 80px;
+    padding: 40px 0;
+    border-top: 1px solid var(--hairline);
+    text-align: center;
+  }
+  .footer-mark {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .footer-mark span { color: var(--accent); }
+  .footer-links {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+  }
+  .footer-links a { color: var(--text-muted); margin: 0 8px; font-weight: 400; }
+  .footer-meta { font-size: 12px; color: var(--text-faint); }
+  .lang-content { display: none; }
+  .lang-content.active { display: block; }
+  @media (max-width: 600px) {
+    .container { padding: 40px 22px 60px; }
+    .top-bar-inner { padding: 0 22px; }
+    .top-nav { gap: 12px; }
+    .top-nav a.nav-link { display: none; }
+    h1 { font-size: 36px; letter-spacing: -1px; }
+    h2 { font-size: 22px; }
+    .intro { font-size: 17px; }
+    .contact-section { padding: 32px 24px; }
+    .contact-section h3 { font-size: 24px; }
+  }
 </style>
 </head>
 <body>
 
-<div class="lang-switch">
-  <a href="#tr" class="active" onclick="document.getElementById('tr').style.display='block';document.getElementById('en').style.display='none';">Türkçe</a>
-  <a href="#en" onclick="document.getElementById('en').style.display='block';document.getElementById('tr').style.display='none';">English</a>
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <a href="/" class="top-brand">Hushu<span>+</span></a>
+    <div class="top-nav">
+      <a href="/privacy" class="nav-link">Privacy</a>
+      <a href="/terms" class="nav-link">Terms</a>
+      <div class="lang-switch">
+        <a onclick="setLang('en')" id="lang-en" class="active">English</a>
+        <a onclick="setLang('tr')" id="lang-tr">Türkçe</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- TÜRKÇE -->
-<div id="tr">
+<div class="container">
 
-<h1>Gizlilik Politikası</h1>
-<p class="meta">Yürürlük tarihi: 14 Mayıs 2026 · Son güncelleme: 14 Mayıs 2026</p>
+  <!-- ENGLISH CONTENT -->
+  <div id="content-en" class="lang-content active">
 
-<p>Hushu, bebeklerin anılarını saklamak için tasarlanmış bir keepsake uygulamasıdır. Bu Gizlilik Politikası, Hushu uygulamasını kullanırken hangi verileri topladığımızı, nasıl kullandığımızı ve haklarını açıklar.</p>
+    <div class="label-eyebrow">Legal</div>
+    <h1>Privacy Policy</h1>
+    <div class="meta">Effective date: May 14, 2026 · Last updated: May 14, 2026</div>
 
-<h2>1. Topladığımız Veriler</h2>
-<p>Hushu <strong>local-first</strong> bir uygulamadır. Tüm verileriniz cihazınızda saklanır, sunucularımıza yüklenmez.</p>
-<p>Cihazınızda saklanan veriler:</p>
-<ul>
-  <li>Fotoğraflar ve videolar (kendi cihaz kameranızdan)</li>
-  <li>Günlük entry'leri (yazdığınız notlar)</li>
-  <li>Sesli notlar</li>
-  <li>Profil bilgileri (isim, doğum tarihi, cinsiyet)</li>
-  <li>Kitap ve albüm metadata'sı</li>
-  <li>Mektuplar</li>
-  <li>Uygulama ayarları (tema, dil, vb.)</li>
-</ul>
-<p>Tüm bu veriler <strong>yalnızca sizin cihazınızda</strong> kalır. Apple iCloud Backup özelliği açıksa, cihazınızın yedeği iCloud hesabınıza otomatik olarak alınır (Apple tarafından, biz değil).</p>
+    <p class="intro">Hushu ("we," "our," or "us") is a keepsake application designed to help parents preserve memories of their babies. This Privacy Policy explains what information we collect, how we use it, your rights, and the limitations of our responsibilities when you use the Hushu app.</p>
 
-<h2>2. Verilerinizi Nasıl Kullanırız</h2>
-<p>Hushu, sakladığınız verileri yalnızca uygulamanın temel işlevlerini sağlamak için kullanır:</p>
-<ul>
-  <li>Anılarınızı kronolojik olarak görüntülemek</li>
-  <li>Aylık, yıllık ve özel kitaplar oluşturmak</li>
-  <li>Hatırlatmalar göndermek (yerel bildirimler)</li>
-  <li>Uygulamayı kişiselleştirmek</li>
-</ul>
-<p>Verileriniz <strong>üçüncü taraflarla paylaşılmaz</strong>, reklam için kullanılmaz, analiz için bir yere gönderilmez.</p>
+    <p>By using Hushu, you agree to the practices described in this Privacy Policy. If you do not agree, please do not use the app.</p>
 
-<h2>3. Üçüncü Taraf Servisler</h2>
-<p>Hushu yalnızca <strong>RevenueCat</strong> isimli abonelik yönetim servisini kullanır:</p>
-<ul>
-  <li><strong>Amaç:</strong> Hushu+ abonelik durumunuzu doğrulamak ve yönetmek</li>
-  <li><strong>Paylaşılan veri:</strong> Anonim cihaz tanımlayıcısı (Apple ID değil) ve abonelik bilgileri</li>
-  <li><strong>Toplanan kişisel bilgi:</strong> Yok — RevenueCat sizi tanımlayabilecek hiçbir kişisel veri almaz</li>
-  <li><strong>Privacy Policy:</strong> <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></li>
-</ul>
-<p>Bunun dışında hiçbir analytics, crash reporting, advertising veya tracking servisi kullanılmaz.</p>
+    <section>
+      <div class="section-tag">01 · Data Collection</div>
+      <h2>Information We Collect</h2>
+      <p>Hushu is a <strong>local-first</strong> application. All your data is stored on your device and is <strong>never uploaded to our servers</strong>. We do not operate any servers that store user content.</p>
+      <p>Data stored on your device only:</p>
+      <ul>
+        <li>Photos and videos (captured via your device camera or imported from your library)</li>
+        <li>Diary entries (text notes you write)</li>
+        <li>Voice notes (audio recordings)</li>
+        <li>Profile information (baby name, birthday, gender, avatar)</li>
+        <li>Book and album metadata</li>
+        <li>Letters (text written within the app)</li>
+        <li>App preferences (theme, language, notification settings)</li>
+      </ul>
+      <p>We <strong>do not collect</strong>: cookies, tracking pixels, advertising identifiers, location data, contacts, calendar, microphone (except when you explicitly record), or any biometric data.</p>
+      <div class="callout">
+        <p>All your content remains <strong>only on your device</strong>. If Apple iCloud Backup is enabled, your device backup is stored in your iCloud account by Apple. Apple's privacy policy governs that backup — Hushu has no access to or control over your iCloud account.</p>
+      </div>
+    </section>
 
-<h2>4. Veri Saklama ve Güvenlik</h2>
-<p>Verileriniz cihazınızın yerel depolama alanında saklanır. iOS güvenlik özellikleri (App Sandbox, encrypted storage) tüm verilerinizi koruyacak şekilde tasarlanmıştır.</p>
-<p>Cihazınız çalınır, kaybolursa veya bozulursa, eğer Apple iCloud Backup özelliğiniz açıksa verileriniz geri yüklenebilir. Bu konuda Apple'ın gizlilik politikası geçerlidir.</p>
+    <section>
+      <div class="section-tag">02 · Usage</div>
+      <h2>How We Use Your Information</h2>
+      <p>Hushu uses your stored data <strong>only</strong> to provide the app's core functionality:</p>
+      <ul>
+        <li>Display your memories chronologically</li>
+        <li>Create monthly, yearly, album, letter, and pregnancy books</li>
+        <li>Send local notifications (reminders, milestones)</li>
+        <li>Personalize the app experience based on your preferences</li>
+      </ul>
+      <p>We <strong>do not</strong>:</p>
+      <ul>
+        <li>Sell, rent, or share your personal data with any third party</li>
+        <li>Use your data for advertising or marketing</li>
+        <li>Perform automated decision-making or profiling</li>
+        <li>Send promotional emails (we do not have your email)</li>
+        <li>Track your behavior across other apps or websites</li>
+      </ul>
+    </section>
 
-<h2>5. Çocukların Gizliliği</h2>
-<p>Hushu, <strong>13 yaşından küçük çocuklara yönelik değildir</strong>. Bilerek 13 yaşından küçük çocuklardan veri toplamayız.</p>
-<p>Hushu, bebeklerin anılarını <strong>ebeveynler tarafından</strong> saklamak için tasarlanmıştır. Uygulamayı yalnızca 18 yaş ve üzeri kullanıcılar kullanmalıdır.</p>
-<p>Eğer bir çocuğun verilerinin Hushu'da olduğunu fark ederseniz, lütfen bizimle iletişime geçin; verileri derhal silelim.</p>
+    <section>
+      <div class="section-tag">03 · Third Parties</div>
+      <h2>Third-Party Services</h2>
+      <p>Hushu uses only <strong>RevenueCat</strong>, a subscription management service:</p>
+      <ul>
+        <li><strong>Purpose:</strong> Verify and manage your Hushu+ subscription status</li>
+        <li><strong>Data shared:</strong> Anonymous device identifier (not your Apple ID, name, or email) and subscription transaction information</li>
+        <li><strong>Personal data collected:</strong> None — RevenueCat does not receive any personal data that could identify you as an individual</li>
+        <li><strong>RevenueCat's Privacy Policy:</strong> <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></li>
+      </ul>
+      <p>Beyond RevenueCat, Hushu uses <strong>no</strong>:</p>
+      <ul>
+        <li>Analytics services (no Google Analytics, Mixpanel, Amplitude, etc.)</li>
+        <li>Crash reporting services (no Sentry, Crashlytics, etc.)</li>
+        <li>Advertising networks</li>
+        <li>Marketing platforms</li>
+        <li>Social media SDKs</li>
+        <li>External authentication providers</li>
+      </ul>
+    </section>
 
-<h2>6. Haklarınız (KVKK + GDPR)</h2>
-<p>Türkiye'de yaşıyorsanız KVKK kapsamında, AB'de yaşıyorsanız GDPR kapsamında şu haklara sahipsiniz:</p>
-<ul>
-  <li><strong>Erişim hakkı:</strong> Hushu'daki tüm verilerinizi uygulamanın "Verilerimi dışa aktar" özelliği ile ZIP olarak indirebilirsiniz</li>
-  <li><strong>Silme hakkı:</strong> Tüm verilerinizi uygulama içinden "Tüm verilerimi sil" butonu ile silebilirsiniz</li>
-  <li><strong>Düzeltme hakkı:</strong> Verilerinizi her zaman uygulama içinde düzenleyebilirsiniz</li>
-  <li><strong>İtiraz hakkı:</strong> Veri işlemenin sınırlanmasını talep edebilirsiniz</li>
-</ul>
-<p>Bu haklarınızı kullanmak için <a href="mailto:info@hushu.app">info@hushu.app</a> adresinden bizimle iletişime geçebilirsiniz.</p>
+    <section>
+      <div class="section-tag">04 · Security</div>
+      <h2>Data Storage and Security</h2>
+      <p>Your data is stored in your device's local storage. We rely on Apple iOS security features to protect this data, including:</p>
+      <ul>
+        <li>App Sandbox (data isolated from other apps)</li>
+        <li>Encrypted device storage (if your device has a passcode)</li>
+        <li>Secure Enclave (for biometric authentication)</li>
+      </ul>
+      <p>While we take reasonable measures to design Hushu securely, <strong>no method of storage is 100% secure</strong>. We cannot guarantee absolute security of data on your device.</p>
+      <div class="callout">
+        <p><strong>Backup responsibility:</strong> You are solely responsible for backing up your data. We strongly recommend enabling Apple iCloud Backup. Hushu is not liable for data loss resulting from device damage, loss, theft, software malfunction, or failure to back up.</p>
+      </div>
+    </section>
 
-<h2>7. Abonelik Yönetimi (Hushu+)</h2>
-<p>Hushu+ aboneliği Apple App Store üzerinden satın alınır ve yönetilir. Apple ID'niz Apple'ın gizlilik politikasına tabidir. Hushu, Apple ID veya ödeme bilgilerinize erişmez.</p>
-<p>Aboneliğinizi yönetmek veya iptal etmek için: <strong>Ayarlar → Apple ID → Subscriptions → Hushu+</strong>.</p>
+    <section>
+      <div class="section-tag">05 · Breach Notification</div>
+      <h2>Data Breach Notification</h2>
+      <p>Because Hushu does not operate servers and does not store your personal data outside your device, the risk of a server-side data breach affecting your data is effectively zero.</p>
+      <p>In the unlikely event that we become aware of a breach affecting users' data (e.g., a security vulnerability in our app code), we will:</p>
+      <ul>
+        <li>Notify affected users within <strong>72 hours</strong> via in-app notification or App Store update notes (as required by GDPR Article 33)</li>
+        <li>Promptly issue a patch via an app update</li>
+        <li>Notify the relevant Data Protection Authority if legally required</li>
+      </ul>
+    </section>
 
-<h2>8. Politikadaki Değişiklikler</h2>
-<p>Bu Gizlilik Politikası zaman zaman güncellenebilir. Önemli değişiklikleri uygulama içinde bildiririz. Bu sayfadaki "Son güncelleme" tarihini her zaman kontrol edebilirsiniz.</p>
+    <section>
+      <div class="section-tag">06 · Children</div>
+      <h2>Children's Privacy</h2>
+      <p>Hushu is <strong>not intended for children under the age of 13</strong>. We do not knowingly collect data from children under 13. The app should only be used by individuals 18 years or older.</p>
+      <p>Hushu is designed for <strong>parents and legal guardians</strong> to preserve memories of their babies and children. Parents are responsible for the content they create within the app, including content about their own children.</p>
+      <p>If you believe a child under 13 is using Hushu without parental consent, please contact us at <a href="mailto:info@hushu.app">info@hushu.app</a>, and we will take immediate action.</p>
+    </section>
 
-<h2>9. İletişim</h2>
-<p>Gizliliğinizle ilgili soru veya endişeleriniz için:</p>
-<p><strong>Email:</strong> <a href="mailto:info@hushu.app">info@hushu.app</a><br>
-<strong>Sahibi:</strong> Harun Tanyeri<br>
-<strong>Konum:</strong> İzmir, Türkiye</p>
+    <section>
+      <div class="section-tag">07 · Your Rights</div>
+      <h2>Your Rights (GDPR, CCPA, KVKK)</h2>
+      <p>Under various privacy laws including the EU General Data Protection Regulation (GDPR), California Consumer Privacy Act (CCPA), and Turkey's KVKK (Kişisel Verilerin Korunması Kanunu), you have the following rights:</p>
+      <ul>
+        <li><strong>Right of access:</strong> Download all your Hushu data as a ZIP file using the "Export My Data" feature in the app</li>
+        <li><strong>Right to deletion (erasure):</strong> Delete all your data via the "Delete All My Data" button in app Settings. This is permanent and irreversible</li>
+        <li><strong>Right to rectification:</strong> Edit, update, or correct your data anytime within the app</li>
+        <li><strong>Right to restriction:</strong> Stop using the app to halt any further data processing</li>
+        <li><strong>Right to data portability:</strong> Export feature provides data in machine-readable JSON format</li>
+        <li><strong>Right to object:</strong> Object to processing by contacting us</li>
+        <li><strong>Right to withdraw consent:</strong> Stop using the app or delete it</li>
+      </ul>
+      <p>To exercise these rights or for any privacy concerns, contact us at <a href="mailto:info@hushu.app">info@hushu.app</a>.</p>
+      <div class="callout">
+        <p><strong>Right to lodge a complaint:</strong> You have the right to lodge a complaint with the relevant supervisory authority. In Turkey, this is the Kişisel Verileri Koruma Kurumu (<a href="https://www.kvkk.gov.tr" target="_blank">kvkk.gov.tr</a>). In the EU, this is your national Data Protection Authority.</p>
+      </div>
+    </section>
 
-</div>
+    <section>
+      <div class="section-tag">08 · Subscription</div>
+      <h2>Subscription Management (Hushu+)</h2>
+      <p>The Hushu+ subscription is purchased, billed, and managed entirely through the Apple App Store. We have <strong>no access</strong> to your Apple ID, payment method, or financial information. Apple's privacy policy governs payment processing.</p>
+      <div class="callout">
+        <p>To manage, cancel, or request a refund for your subscription: <strong>Settings → Apple ID → Subscriptions → Hushu+</strong>. Refunds are handled by Apple, not Hushu.</p>
+      </div>
+    </section>
 
-<!-- ENGLISH -->
-<div id="en" style="display:none;">
+    <section>
+      <div class="section-tag">09 · International</div>
+      <h2>International Data Transfers</h2>
+      <p>Because your data is stored locally on your device, <strong>no international data transfers occur</strong> as part of Hushu's normal operation. Your data does not leave your device under our control.</p>
+      <p>If you are located outside Turkey and use Hushu, the only data transfer involves your anonymous subscription identifier sent to RevenueCat (based in the United States) for subscription verification. RevenueCat is GDPR-compliant and uses appropriate safeguards for international transfers.</p>
+    </section>
 
-<h1>Privacy Policy</h1>
-<p class="meta">Effective date: May 14, 2026 · Last updated: May 14, 2026</p>
+    <section>
+      <div class="section-tag">10 · Limitations</div>
+      <h2>Limitations and Disclaimers</h2>
+      <p>While we strive to provide a reliable and secure app, Hushu is provided <strong>"as is"</strong> without warranties of any kind. Specifically:</p>
+      <ul>
+        <li><strong>No data preservation guarantee:</strong> We do not guarantee that your data will be preserved indefinitely. Data loss may occur due to device damage, software bugs, OS updates, user error, or factors beyond our control</li>
+        <li><strong>No professional advice:</strong> Hushu is a keepsake application, not a medical, psychological, or professional advisory service. Content within Hushu should not be considered professional advice</li>
+        <li><strong>Service availability:</strong> We do not guarantee uninterrupted availability. The app may experience downtime, bugs, or temporary unavailability</li>
+        <li><strong>Third-party reliance:</strong> Hushu depends on Apple iOS, Apple App Store, and RevenueCat. Issues with these third parties are beyond our control</li>
+      </ul>
+      <p>For full disclaimers and limitations of liability, please review our <a href="/terms">Terms of Service</a>.</p>
+    </section>
 
-<p>Hushu is a keepsake application designed to preserve memories of babies. This Privacy Policy explains what information we collect, how we use it, and your rights when using the Hushu app.</p>
+    <section>
+      <div class="section-tag">11 · Changes</div>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or service features. Significant changes will be notified within the app or via the App Store version notes.</p>
+      <p>The "Last updated" date at the top of this page reflects the most recent revision. Your continued use of Hushu after changes constitutes acceptance of the updated policy.</p>
+    </section>
 
-<h2>1. Information We Collect</h2>
-<p>Hushu is a <strong>local-first</strong> application. All your data is stored on your device and is never uploaded to our servers.</p>
-<p>Data stored on your device:</p>
-<ul>
-  <li>Photos and videos (from your device camera)</li>
-  <li>Diary entries (notes you write)</li>
-  <li>Voice notes</li>
-  <li>Profile information (name, birthday, gender)</li>
-  <li>Book and album metadata</li>
-  <li>Letters</li>
-  <li>App settings (theme, language, etc.)</li>
-</ul>
-<p>All this data remains <strong>only on your device</strong>. If Apple iCloud Backup is enabled, your device backup is automatically stored in your iCloud account (by Apple, not by us).</p>
+    <div class="contact-section">
+      <div class="label-eyebrow">Contact</div>
+      <h3>Questions?</h3>
+      <a href="mailto:info@hushu.app" class="email">info@hushu.app</a>
+      <div class="meta-info">
+        Harun Tanyeri<br>
+        İzmir, Türkiye
+      </div>
+    </div>
 
-<h2>2. How We Use Your Information</h2>
-<p>Hushu uses your stored data only to provide the app's core functionality:</p>
-<ul>
-  <li>Display your memories chronologically</li>
-  <li>Create monthly, yearly, and custom books</li>
-  <li>Send reminders (local notifications)</li>
-  <li>Personalize the app experience</li>
-</ul>
-<p>Your data is <strong>never shared with third parties</strong>, used for advertising, or sent for analytics.</p>
+  </div>
 
-<h2>3. Third-Party Services</h2>
-<p>Hushu only uses <strong>RevenueCat</strong>, a subscription management service:</p>
-<ul>
-  <li><strong>Purpose:</strong> To verify and manage your Hushu+ subscription status</li>
-  <li><strong>Data shared:</strong> Anonymous device identifier (not your Apple ID) and subscription information</li>
-  <li><strong>Personal data collected:</strong> None — RevenueCat does not receive any personal data that could identify you</li>
-  <li><strong>Privacy Policy:</strong> <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></li>
-</ul>
-<p>No analytics, crash reporting, advertising, or tracking services are used beyond this.</p>
+  <!-- TURKISH CONTENT -->
+  <div id="content-tr" class="lang-content">
 
-<h2>4. Data Storage and Security</h2>
-<p>Your data is stored in your device's local storage. iOS security features (App Sandbox, encrypted storage) protect all your data.</p>
-<p>If your device is lost, stolen, or damaged, your data can be restored if Apple iCloud Backup is enabled. Apple's privacy policy applies in this case.</p>
+    <div class="label-eyebrow">Yasal</div>
+    <h1>Gizlilik Politikası</h1>
+    <div class="meta">Yürürlük tarihi: 14 Mayıs 2026 · Son güncelleme: 14 Mayıs 2026</div>
 
-<h2>5. Children's Privacy</h2>
-<p>Hushu is <strong>not intended for children under 13</strong>. We do not knowingly collect data from children under 13.</p>
-<p>Hushu is designed for <strong>parents</strong> to preserve memories of their babies. The app should only be used by individuals 18 years or older.</p>
-<p>If you become aware that a child's data is in Hushu, please contact us; we will delete the data immediately.</p>
+    <p class="intro">Hushu ("biz" veya "bizim"), ebeveynlerin bebeklerinin anılarını saklamasına yardımcı olmak için tasarlanmış bir keepsake uygulamasıdır. Bu Gizlilik Politikası, hangi bilgileri topladığımızı, nasıl kullandığımızı, haklarınızı ve sorumluluklarımızın sınırlarını açıklar.</p>
 
-<h2>6. Your Rights (GDPR + CCPA)</h2>
-<p>If you live in the EU, you have the following rights under GDPR. California residents have similar rights under CCPA:</p>
-<ul>
-  <li><strong>Right to access:</strong> Download all your Hushu data as a ZIP using the "Export My Data" feature</li>
-  <li><strong>Right to deletion:</strong> Delete all your data using the "Delete All My Data" button in the app</li>
-  <li><strong>Right to correction:</strong> Edit your data anytime within the app</li>
-  <li><strong>Right to restriction:</strong> Request limitation of data processing</li>
-</ul>
-<p>To exercise these rights, contact us at <a href="mailto:info@hushu.app">info@hushu.app</a>.</p>
+    <p>Hushu'yu kullanarak bu Gizlilik Politikası'nda tanımlanan uygulamaları kabul etmiş sayılırsınız. Kabul etmiyorsanız lütfen uygulamayı kullanmayın.</p>
 
-<h2>7. Subscription Management (Hushu+)</h2>
-<p>The Hushu+ subscription is purchased and managed through the Apple App Store. Your Apple ID is subject to Apple's privacy policy. Hushu does not have access to your Apple ID or payment information.</p>
-<p>To manage or cancel your subscription: <strong>Settings → Apple ID → Subscriptions → Hushu+</strong>.</p>
+    <section>
+      <div class="section-tag">01 · Veri Toplama</div>
+      <h2>Topladığımız Veriler</h2>
+      <p>Hushu <strong>local-first</strong> bir uygulamadır. Tüm verileriniz cihazınızda saklanır ve <strong>asla sunucularımıza yüklenmez</strong>. Kullanıcı içeriği saklayan herhangi bir sunucu işletmiyoruz.</p>
+      <p>Yalnızca cihazınızda saklanan veriler:</p>
+      <ul>
+        <li>Fotoğraflar ve videolar (cihaz kameranızdan veya kitaplığınızdan)</li>
+        <li>Günlük entry'leri (yazdığınız notlar)</li>
+        <li>Sesli notlar (ses kayıtları)</li>
+        <li>Profil bilgileri (bebek adı, doğum tarihi, cinsiyet, avatar)</li>
+        <li>Kitap ve albüm metadata'sı</li>
+        <li>Mektuplar (uygulama içinde yazılan metinler)</li>
+        <li>Uygulama tercihleri (tema, dil, bildirim ayarları)</li>
+      </ul>
+      <p>Şunları <strong>toplamıyoruz</strong>: çerezler, tracking pixel'leri, reklam tanımlayıcıları, konum, kişiler, takvim, mikrofon (siz kayıt yapana kadar) veya biyometrik veri.</p>
+      <div class="callout">
+        <p>Tüm içeriğiniz <strong>yalnızca cihazınızda</strong> kalır. Apple iCloud Backup açıksa, cihaz yedeği Apple tarafından iCloud hesabınıza alınır. Apple'ın gizlilik politikası bu yedeği yönetir — Hushu'nun iCloud hesabınıza erişimi veya kontrolü yoktur.</p>
+      </div>
+    </section>
 
-<h2>8. Changes to This Policy</h2>
-<p>This Privacy Policy may be updated from time to time. We will notify you of significant changes within the app. Always check the "Last updated" date at the top of this page.</p>
+    <section>
+      <div class="section-tag">02 · Kullanım</div>
+      <h2>Verilerinizi Nasıl Kullanırız</h2>
+      <p>Hushu, sakladığınız verileri <strong>yalnızca</strong> uygulamanın temel işlevlerini sağlamak için kullanır:</p>
+      <ul>
+        <li>Anılarınızı kronolojik olarak görüntülemek</li>
+        <li>Aylık, yıllık, albüm, mektup ve hamilelik kitapları oluşturmak</li>
+        <li>Yerel bildirimler göndermek (hatırlatmalar, milestone'lar)</li>
+        <li>Tercihlerinize göre uygulamayı kişiselleştirmek</li>
+      </ul>
+      <p>Şunları <strong>yapmıyoruz</strong>:</p>
+      <ul>
+        <li>Kişisel verilerinizi üçüncü taraflara satmak, kiralamak veya paylaşmak</li>
+        <li>Verilerinizi reklam veya pazarlama için kullanmak</li>
+        <li>Otomatik karar verme veya profilleme yapmak</li>
+        <li>Promosyon e-postaları göndermek (e-postanız bizde yok)</li>
+        <li>Diğer uygulamalarda veya web sitelerinde davranışınızı takip etmek</li>
+      </ul>
+    </section>
 
-<h2>9. Contact Us</h2>
-<p>For any questions or concerns about your privacy:</p>
-<p><strong>Email:</strong> <a href="mailto:info@hushu.app">info@hushu.app</a><br>
-<strong>Owner:</strong> Harun Tanyeri<br>
-<strong>Location:</strong> İzmir, Türkiye</p>
+    <section>
+      <div class="section-tag">03 · Üçüncü Taraflar</div>
+      <h2>Üçüncü Taraf Servisler</h2>
+      <p>Hushu yalnızca <strong>RevenueCat</strong> isimli abonelik yönetim servisini kullanır:</p>
+      <ul>
+        <li><strong>Amaç:</strong> Hushu+ abonelik durumunuzu doğrulamak ve yönetmek</li>
+        <li><strong>Paylaşılan veri:</strong> Anonim cihaz tanımlayıcısı (Apple ID, isim veya e-postanız değil) ve abonelik işlem bilgileri</li>
+        <li><strong>Toplanan kişisel veri:</strong> Yok — RevenueCat sizi birey olarak tanımlayabilecek herhangi bir kişisel veri almaz</li>
+        <li><strong>RevenueCat Gizlilik Politikası:</strong> <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></li>
+      </ul>
+      <p>RevenueCat dışında Hushu <strong>hiçbir</strong> şey kullanmaz:</p>
+      <ul>
+        <li>Analytics servisleri (Google Analytics, Mixpanel, Amplitude vb. yok)</li>
+        <li>Crash reporting servisleri (Sentry, Crashlytics vb. yok)</li>
+        <li>Reklam ağları</li>
+        <li>Pazarlama platformları</li>
+        <li>Sosyal medya SDK'ları</li>
+        <li>Harici kimlik doğrulama sağlayıcıları</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">04 · Güvenlik</div>
+      <h2>Veri Saklama ve Güvenlik</h2>
+      <p>Verileriniz cihazınızın yerel depolama alanında saklanır. Bu verileri korumak için Apple iOS güvenlik özelliklerine güveniyoruz:</p>
+      <ul>
+        <li>App Sandbox (veri diğer uygulamalardan izole)</li>
+        <li>Şifrelenmiş cihaz depolama (cihazınızda passcode varsa)</li>
+        <li>Secure Enclave (biyometrik kimlik doğrulama)</li>
+      </ul>
+      <p>Hushu'yu güvenli tasarlamak için makul önlemler almamıza rağmen, <strong>hiçbir saklama yöntemi %100 güvenli değildir</strong>. Cihazınızdaki verilerin mutlak güvenliğini garanti edemeyiz.</p>
+      <div class="callout">
+        <p><strong>Yedekleme sorumluluğu:</strong> Verilerinizi yedeklemekten yalnızca siz sorumlusunuz. Apple iCloud Backup'ı açmanızı şiddetle öneririz. Hushu, cihaz hasarı, kayıp, hırsızlık, yazılım arızası veya yedekleme yapılmaması nedeniyle oluşan veri kaybından sorumlu değildir.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-tag">05 · İhlal Bildirimi</div>
+      <h2>Veri İhlali Bildirimi</h2>
+      <p>Hushu sunucu işletmediği ve kişisel verilerinizi cihazınız dışında saklamadığı için, sunucu kaynaklı veri ihlali riski etkili olarak sıfırdır.</p>
+      <p>Kullanıcı verilerini etkileyen bir ihlal (örn. uygulama kodunda güvenlik açığı) tespit ettiğimiz olası durumda:</p>
+      <ul>
+        <li>Etkilenen kullanıcıları <strong>72 saat içinde</strong> uygulama içi bildirim veya App Store güncelleme notları aracılığıyla bilgilendireceğiz (GDPR Madde 33 gereği)</li>
+        <li>Bir uygulama güncellemesi aracılığıyla derhal patch yayınlayacağız</li>
+        <li>Yasal olarak gerekiyorsa ilgili Veri Koruma Otoritesine bildireceğiz</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">06 · Çocuklar</div>
+      <h2>Çocukların Gizliliği</h2>
+      <p>Hushu, <strong>13 yaşından küçük çocuklara yönelik değildir</strong>. Bilerek 13 yaşından küçük çocuklardan veri toplamayız. Uygulama yalnızca 18 yaş ve üzeri bireyler tarafından kullanılmalıdır.</p>
+      <p>Hushu, <strong>ebeveynler ve yasal velilerin</strong> bebeklerinin ve çocuklarının anılarını saklamak için tasarlanmıştır. Ebeveynler, kendi çocukları hakkındaki içerik dahil, uygulama içinde oluşturdukları içerikten sorumludur.</p>
+      <p>13 yaşından küçük bir çocuğun ebeveyn izni olmadan Hushu kullandığını düşünüyorsanız, lütfen <a href="mailto:info@hushu.app">info@hushu.app</a> adresinden bizimle iletişime geçin; derhal işlem yaparız.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">07 · Haklarınız</div>
+      <h2>Haklarınız (KVKK, GDPR, CCPA)</h2>
+      <p>Türkiye Kişisel Verilerin Korunması Kanunu (KVKK), AB Genel Veri Koruma Tüzüğü (GDPR) ve Kaliforniya Tüketici Gizlilik Yasası (CCPA) dahil çeşitli gizlilik yasaları kapsamında şu haklara sahipsiniz:</p>
+      <ul>
+        <li><strong>Erişim hakkı:</strong> Uygulamadaki "Verilerimi dışa aktar" özelliği ile tüm Hushu verilerinizi ZIP olarak indirebilirsiniz</li>
+        <li><strong>Silme hakkı:</strong> Uygulama Ayarlar'ındaki "Tüm verilerimi sil" butonu ile tüm verilerinizi silebilirsiniz. Bu işlem kalıcı ve geri alınamazdır</li>
+        <li><strong>Düzeltme hakkı:</strong> Verilerinizi her zaman uygulama içinde düzenleyebilir, güncelleyebilir veya düzeltebilirsiniz</li>
+        <li><strong>İşleme kısıtlama hakkı:</strong> Daha fazla veri işlemeyi durdurmak için uygulamayı kullanmayı bırakabilirsiniz</li>
+        <li><strong>Veri taşınabilirliği:</strong> Dışa aktarma özelliği makine okunabilir JSON formatında veri sağlar</li>
+        <li><strong>İtiraz hakkı:</strong> İşlemeye itiraz etmek için bizimle iletişime geçin</li>
+        <li><strong>Onay geri çekme hakkı:</strong> Uygulamayı kullanmayı bırakın veya silin</li>
+      </ul>
+      <p>Bu hakları kullanmak veya herhangi bir gizlilik endişesi için <a href="mailto:info@hushu.app">info@hushu.app</a> adresinden iletişime geçin.</p>
+      <div class="callout">
+        <p><strong>Şikayet hakkı:</strong> İlgili denetim makamına şikayette bulunma hakkına sahipsiniz. Türkiye'de bu Kişisel Verileri Koruma Kurumu'dur (<a href="https://www.kvkk.gov.tr" target="_blank">kvkk.gov.tr</a>). AB'de ulusal Veri Koruma Otoritenizdir.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-tag">08 · Abonelik</div>
+      <h2>Abonelik Yönetimi (Hushu+)</h2>
+      <p>Hushu+ aboneliği tamamen Apple App Store üzerinden satın alınır, faturalandırılır ve yönetilir. Apple ID'nize, ödeme yönteminize veya finansal bilgilerinize <strong>erişimimiz yoktur</strong>. Ödeme işlemi Apple'ın gizlilik politikasına tabidir.</p>
+      <div class="callout">
+        <p>Aboneliğinizi yönetmek, iptal etmek veya iade talep etmek için: <strong>Ayarlar → Apple ID → Subscriptions → Hushu+</strong>. İadeler Apple tarafından yönetilir, Hushu tarafından değil.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-tag">09 · Uluslararası</div>
+      <h2>Uluslararası Veri Aktarımları</h2>
+      <p>Verileriniz cihazınızda yerel olarak saklandığı için, Hushu'nun normal işleyişinin bir parçası olarak <strong>uluslararası veri aktarımı gerçekleşmez</strong>. Verileriniz kontrolümüz altında cihazınızdan ayrılmaz.</p>
+      <p>Türkiye dışında bulunup Hushu kullanıyorsanız, tek veri aktarımı abonelik doğrulaması için RevenueCat'e (ABD merkezli) gönderilen anonim abonelik tanımlayıcınızdır. RevenueCat GDPR uyumludur ve uluslararası aktarımlar için uygun korumalar kullanır.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">10 · Sınırlamalar</div>
+      <h2>Sınırlamalar ve Sorumluluk Reddi</h2>
+      <p>Güvenilir ve güvenli bir uygulama sağlamak için çaba göstersek de, Hushu hiçbir türde garanti vermeden <strong>"olduğu gibi"</strong> sağlanır. Özellikle:</p>
+      <ul>
+        <li><strong>Veri koruma garantisi yok:</strong> Verilerinizin süresiz olarak korunacağını garanti etmiyoruz. Cihaz hasarı, yazılım hataları, OS güncellemeleri, kullanıcı hatası veya kontrolümüz dışındaki faktörler nedeniyle veri kaybı olabilir</li>
+        <li><strong>Profesyonel tavsiye değildir:</strong> Hushu bir keepsake uygulamasıdır, tıbbi, psikolojik veya profesyonel danışmanlık hizmeti değildir. Hushu içindeki içerik profesyonel tavsiye olarak değerlendirilmemelidir</li>
+        <li><strong>Servis kullanılabilirliği:</strong> Kesintisiz kullanılabilirlik garanti etmiyoruz. Uygulama downtime, hata veya geçici kullanılamazlık yaşayabilir</li>
+        <li><strong>Üçüncü taraflara bağımlılık:</strong> Hushu Apple iOS, Apple App Store ve RevenueCat'e bağımlıdır. Bu üçüncü taraflarla ilgili sorunlar kontrolümüz dışındadır</li>
+      </ul>
+      <p>Tüm sorumluluk reddi ve sorumluluk sınırlamaları için lütfen <a href="/terms">Kullanım Koşulları</a>'nı inceleyin.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">11 · Değişiklikler</div>
+      <h2>Politikadaki Değişiklikler</h2>
+      <p>Bu Gizlilik Politikası uygulamalarımızdaki, yasal gerekliliklerdeki veya servis özelliklerindeki değişiklikleri yansıtmak için zaman zaman güncellenebilir. Önemli değişiklikler uygulama içinde veya App Store sürüm notları aracılığıyla bildirilir.</p>
+      <p>Bu sayfanın üstündeki "Son güncelleme" tarihi en son revizyonu yansıtır. Değişikliklerden sonra Hushu'yu kullanmaya devam etmeniz güncellenmiş politikayı kabul ettiğiniz anlamına gelir.</p>
+    </section>
+
+    <div class="contact-section">
+      <div class="label-eyebrow">İletişim</div>
+      <h3>Sorularınız için</h3>
+      <a href="mailto:info@hushu.app" class="email">info@hushu.app</a>
+      <div class="meta-info">
+        Harun Tanyeri<br>
+        İzmir, Türkiye
+      </div>
+    </div>
+
+  </div>
 
 </div>
 
 <div class="footer">
-  © 2026 Hushu · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+  <div class="footer-mark">Hushu<span>+</span></div>
+  <div class="footer-links">
+    <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+  </div>
+  <div class="footer-meta">© 2026 Hushu · Memories that stay yours</div>
 </div>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-switch a').forEach(el => el.classList.remove('active'));
+    document.getElementById('content-' + lang).classList.add('active');
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.documentElement.lang = lang;
+    try { localStorage.setItem('hushu-lang', lang); } catch(e) {}
+    if (history.replaceState) { history.replaceState(null, null, '#' + lang); }
+  }
+  (function() {
+    const hash = window.location.hash.replace('#', '');
+    const saved = (function() { try { return localStorage.getItem('hushu-lang'); } catch(e) { return null; } })();
+    const lang = (hash === 'tr' || hash === 'en') ? hash : (saved || 'en');
+    setLang(lang);
+  })();
+</script>
 
 </body>
 </html>
