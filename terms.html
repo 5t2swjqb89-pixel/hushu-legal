@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service · Hushu</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg-subtle: #FAFAF7;
+    --text: #0E0E0E;
+    --text-muted: #595959;
+    --text-faint: #8E8E8E;
+    --accent: #C9962D;
+    --hairline: #E8E8E8;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .top-bar {
+    border-bottom: 1px solid var(--hairline);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.9);
+  }
+  .top-bar-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .top-brand {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .top-brand span { color: var(--accent); }
+  .top-nav {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .top-nav a.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .top-nav a.nav-link:hover { color: var(--accent); }
+  .lang-switch {
+    display: flex;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .lang-switch a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-switch a:hover { background: var(--bg-subtle); }
+  .lang-switch a.active { background: var(--text); color: white; }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+  .label-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    margin: 0 0 16px;
+    color: var(--text);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+  }
+  .meta {
+    font-size: 14px;
+    color: var(--text-faint);
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .intro {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0 0 64px;
+    font-weight: 400;
+  }
+  section { margin-top: 56px; }
+  section:first-of-type { margin-top: 0; }
+  .section-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    background: var(--bg-subtle);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 20px;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+  }
+  p {
+    margin: 0 0 16px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  strong { font-weight: 600; color: var(--text); }
+  ul {
+    padding-left: 0;
+    list-style: none;
+    margin: 16px 0;
+  }
+  ul li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 10px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  a:hover { border-bottom-color: var(--accent); }
+  .callout {
+    margin: 32px 0;
+    padding: 20px 24px;
+    background: var(--bg-subtle);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+  }
+  .callout p { margin: 0; font-size: 15px; color: var(--text-muted); }
+  .warning-box {
+    margin: 32px 0;
+    padding: 20px 24px;
+    background: #FFF8E6;
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+  }
+  .warning-box p { margin: 0 0 8px; font-size: 15px; color: var(--text); font-weight: 500; }
+  .warning-box p:last-child { margin-bottom: 0; }
+  .contact-section {
+    margin-top: 80px;
+    padding: 48px 40px;
+    background: var(--bg-subtle);
+    border-radius: 16px;
+    text-align: center;
+  }
+  .contact-section .label-eyebrow { margin-bottom: 16px; }
+  .contact-section h3 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 24px;
+    letter-spacing: -0.5px;
+  }
+  .contact-section .email {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 17px;
+  }
+  .contact-section .meta-info {
+    font-size: 14px;
+    color: var(--text-faint);
+    line-height: 1.8;
+  }
+  .footer {
+    margin-top: 80px;
+    padding: 40px 0;
+    border-top: 1px solid var(--hairline);
+    text-align: center;
+  }
+  .footer-mark {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .footer-mark span { color: var(--accent); }
+  .footer-links {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+  }
+  .footer-links a { color: var(--text-muted); margin: 0 8px; font-weight: 400; }
+  .footer-meta { font-size: 12px; color: var(--text-faint); }
+  .lang-content { display: none; }
+  .lang-content.active { display: block; }
+  @media (max-width: 600px) {
+    .container { padding: 40px 22px 60px; }
+    .top-bar-inner { padding: 0 22px; }
+    .top-nav { gap: 12px; }
+    .top-nav a.nav-link { display: none; }
+    h1 { font-size: 36px; letter-spacing: -1px; }
+    h2 { font-size: 22px; }
+    .intro { font-size: 17px; }
+    .contact-section { padding: 32px 24px; }
+    .contact-section h3 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <a href="/" class="top-brand">Hushu<span>+</span></a>
+    <div class="top-nav">
+      <a href="/privacy" class="nav-link">Privacy</a>
+      <a href="/terms" class="nav-link">Terms</a>
+      <div class="lang-switch">
+        <a onclick="setLang('en')" id="lang-en" class="active">English</a>
+        <a onclick="setLang('tr')" id="lang-tr">Türkçe</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ENGLISH CONTENT -->
+  <div id="content-en" class="lang-content active">
+
+    <div class="label-eyebrow">Legal</div>
+    <h1>Terms of Service</h1>
+    <div class="meta">Effective date: May 14, 2026 · Last updated: May 14, 2026</div>
+
+    <p class="intro">These Terms of Service ("Terms") govern your use of the Hushu mobile application ("the App," "Hushu"). By downloading, installing, or using Hushu, you agree to be bound by these Terms. If you do not agree, do not use the App.</p>
+
+    <p>Hushu is owned and operated by Harun Tanyeri, based in İzmir, Türkiye ("we," "us," "our"). Contact: <a href="mailto:info@hushu.app">info@hushu.app</a></p>
+
+    <section>
+      <div class="section-tag">01 · Acceptance</div>
+      <h2>Acceptance and Eligibility</h2>
+      <p>By using Hushu, you confirm that:</p>
+      <ul>
+        <li>You are at least <strong>18 years of age</strong> or the age of majority in your jurisdiction</li>
+        <li>You have the legal capacity to enter into binding agreements</li>
+        <li>You are not located in a country subject to a U.S. government embargo or designated as a "terrorist supporting" country</li>
+        <li>You are not on any U.S. government list of prohibited or restricted parties</li>
+        <li>You will use the App in compliance with all applicable laws</li>
+      </ul>
+      <p>If you do not meet these eligibility requirements, you may not use Hushu.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">02 · License</div>
+      <h2>License to Use Hushu</h2>
+      <p>Subject to your compliance with these Terms, we grant you a <strong>limited, non-exclusive, non-transferable, revocable license</strong> to download, install, and use Hushu for your personal, non-commercial use on devices you own or control.</p>
+      <p>This license <strong>does not include</strong> the right to:</p>
+      <ul>
+        <li>Modify, adapt, translate, reverse engineer, decompile, or disassemble the App</li>
+        <li>Remove or alter any proprietary notices or labels</li>
+        <li>Use the App for any commercial purpose without our prior written consent</li>
+        <li>Distribute, sell, lease, or sublicense the App</li>
+        <li>Use automated systems (bots, scrapers) to access the App</li>
+        <li>Attempt to gain unauthorized access to any portion of the App or related systems</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">03 · Subscription</div>
+      <h2>Hushu+ Subscription</h2>
+      <p>Hushu offers a paid subscription called <strong>Hushu+</strong> with the following options:</p>
+      <ul>
+        <li><strong>Monthly:</strong> Auto-renewable subscription, billed monthly</li>
+        <li><strong>Yearly:</strong> Auto-renewable subscription, billed annually</li>
+        <li><strong>Lifetime:</strong> One-time purchase, non-recurring</li>
+      </ul>
+      <p>Subscription terms:</p>
+      <ul>
+        <li><strong>Auto-renewal:</strong> Monthly and Yearly subscriptions automatically renew at the end of each billing period unless cancelled at least 24 hours before the end of the current period</li>
+        <li><strong>Billing:</strong> Your Apple ID account will be charged for renewal within 24 hours prior to the end of the current period</li>
+        <li><strong>Free trial:</strong> If offered, a free trial automatically converts to a paid subscription unless cancelled before the trial ends</li>
+        <li><strong>Price changes:</strong> We may change subscription prices. Changes apply to renewal periods following notification</li>
+      </ul>
+      <div class="callout">
+        <p>Manage or cancel your subscription via: <strong>iPhone Settings → Apple ID → Subscriptions → Hushu+</strong></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-tag">04 · Refunds</div>
+      <h2>Refunds and Cancellation</h2>
+      <p><strong>All purchases are final.</strong> However, refund requests are handled exclusively by Apple under their App Store refund policy. We do not process refunds directly.</p>
+      <p>To request a refund from Apple:</p>
+      <ul>
+        <li>Visit <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a></li>
+        <li>Or contact Apple Support directly</li>
+      </ul>
+      <p>If you cancel a subscription, you will continue to have access to Hushu+ features until the end of your current billing period. No partial refunds are issued for unused time.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">05 · Acceptable Use</div>
+      <h2>Acceptable Use and Prohibited Conduct</h2>
+      <p>You agree to use Hushu only for lawful purposes. You agree <strong>not to</strong>:</p>
+      <ul>
+        <li>Violate any applicable laws, regulations, or third-party rights</li>
+        <li>Upload or create content that is illegal, harmful, threatening, abusive, harassing, defamatory, or otherwise objectionable</li>
+        <li>Create content depicting minors in inappropriate, exploitative, or harmful contexts</li>
+        <li>Impersonate any person or entity</li>
+        <li>Interfere with or disrupt the App's functionality</li>
+        <li>Attempt to circumvent security measures or access restricted features without authorization</li>
+        <li>Use the App in a way that could harm Hushu, its users, or third parties</li>
+      </ul>
+      <p>We reserve the right to terminate your access to the App if you violate these Terms.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">06 · Intellectual Property</div>
+      <h2>Intellectual Property</h2>
+      <p>All rights, title, and interest in and to the Hushu app, including its source code, design, logo, name "Hushu," "Hushu+," typography, themes, and all related materials, are owned exclusively by Harun Tanyeri and are protected by copyright, trademark, and other intellectual property laws.</p>
+      <p>Nothing in these Terms grants you any right to use our trademarks, logos, or brand names without our prior written consent.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">07 · Your Content</div>
+      <h2>Your Content</h2>
+      <p>You retain <strong>full ownership</strong> of all content you create or store within Hushu, including your photos, videos, voice notes, written entries, letters, and personal information ("Your Content").</p>
+      <p>Because Hushu is a local-first application, Your Content is stored on your device and is <strong>not transmitted to us</strong>. We claim no ownership, license, or rights to Your Content.</p>
+      <p>You are <strong>solely responsible</strong> for:</p>
+      <ul>
+        <li>The content you create within the App</li>
+        <li>Ensuring you have rights to all photos and media you import</li>
+        <li>Maintaining backups of Your Content (we recommend iCloud Backup)</li>
+        <li>Complying with privacy laws when including images of others in Your Content</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">08 · Disclaimers</div>
+      <h2>Disclaimers and Warranties</h2>
+      <div class="warning-box">
+        <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED.</p>
+      </div>
+      <p>To the fullest extent permitted by law, we disclaim all warranties, including but not limited to:</p>
+      <ul>
+        <li>Warranties of merchantability, fitness for a particular purpose, and non-infringement</li>
+        <li>That the App will be uninterrupted, error-free, secure, or virus-free</li>
+        <li>That defects in the App will be corrected</li>
+        <li>That the App will meet your requirements or expectations</li>
+        <li>That Your Content will be preserved or recoverable in case of loss</li>
+        <li>The accuracy, reliability, or completeness of information generated by the App</li>
+      </ul>
+      <p><strong>Hushu is not a medical, psychological, legal, or professional advisory service.</strong> Content within Hushu should not be relied upon for any professional decision-making.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">09 · Liability</div>
+      <h2>Limitation of Liability</h2>
+      <div class="warning-box">
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL WE BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING WITHOUT LIMITATION DAMAGES FOR LOSS OF DATA, LOSS OF MEMORIES, LOSS OF PROFITS, OR EMOTIONAL DISTRESS.</p>
+      </div>
+      <p>This includes, without limitation, damages arising from:</p>
+      <ul>
+        <li>Your use or inability to use the App</li>
+        <li>Loss, corruption, or destruction of Your Content</li>
+        <li>Unauthorized access to your device</li>
+        <li>Errors, bugs, or interruptions in the App</li>
+        <li>Statements or conduct of any third party regarding the App</li>
+        <li>Any other matter relating to the App</li>
+      </ul>
+      <p>Our total aggregate liability for any claims arising out of or relating to these Terms or the App is limited to the <strong>amount you paid to Apple for Hushu+ in the twelve (12) months preceding the claim</strong>, or, if no payment, ten U.S. dollars ($10.00).</p>
+      <p>Some jurisdictions do not allow the exclusion of certain warranties or limitations of liability. In such jurisdictions, the limitations above apply to the fullest extent permitted by law.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">10 · Indemnification</div>
+      <h2>Indemnification</h2>
+      <p>You agree to indemnify, defend, and hold harmless Hushu, Harun Tanyeri, and any related parties from and against any and all claims, liabilities, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising out of or related to:</p>
+      <ul>
+        <li>Your violation of these Terms</li>
+        <li>Your use or misuse of the App</li>
+        <li>Your Content</li>
+        <li>Your violation of any third-party rights, including privacy or intellectual property rights</li>
+        <li>Your violation of any applicable laws or regulations</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">11 · Termination</div>
+      <h2>Termination</h2>
+      <p>You may stop using the App at any time. To terminate completely, delete the App from your device and use the "Delete All My Data" feature within the App.</p>
+      <p>We may suspend or terminate your access to the App at any time, without notice, if:</p>
+      <ul>
+        <li>You violate these Terms</li>
+        <li>You engage in fraudulent or illegal activity</li>
+        <li>Required by law or court order</li>
+        <li>The App is discontinued</li>
+      </ul>
+      <p>Upon termination, your license to use the App ends immediately. Provisions related to disclaimers, limitations of liability, indemnification, intellectual property, and governing law survive termination.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">12 · Apple</div>
+      <h2>Apple-Specific Provisions</h2>
+      <p>You acknowledge that these Terms are between you and Hushu (Harun Tanyeri), not with Apple. Apple is not responsible for the App or its content.</p>
+      <ul>
+        <li><strong>Maintenance:</strong> Apple has no obligation to provide any maintenance or support services for the App</li>
+        <li><strong>Warranty:</strong> In the event of any failure of the App to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price; Apple has no other warranty obligation</li>
+        <li><strong>Product claims:</strong> We, not Apple, are responsible for addressing any claims relating to the App, including product liability, legal compliance, and consumer protection claims</li>
+        <li><strong>Third-party beneficiary:</strong> Apple and its subsidiaries are third-party beneficiaries of these Terms, and upon your acceptance, Apple has the right to enforce these Terms against you</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">13 · Force Majeure</div>
+      <h2>Force Majeure</h2>
+      <p>We are not liable for any failure or delay in performance caused by circumstances beyond our reasonable control, including but not limited to: acts of God, natural disasters, war, terrorism, pandemics, government actions, internet or telecommunications failures, third-party service outages, or other force majeure events.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">14 · Governing Law</div>
+      <h2>Governing Law and Disputes</h2>
+      <p>These Terms are governed by and construed in accordance with the laws of the <strong>Republic of Türkiye</strong>, without regard to conflict of law principles.</p>
+      <p>Any dispute, controversy, or claim arising out of or relating to these Terms or the App shall be resolved in the <strong>Courts and Enforcement Offices of İzmir, Türkiye</strong>, which shall have exclusive jurisdiction.</p>
+      <p>For consumers within the European Union, this clause does not affect statutory consumer rights under your local jurisdiction.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">15 · Changes</div>
+      <h2>Changes to These Terms</h2>
+      <p>We may modify these Terms from time to time. The most current version will always be available at <a href="https://hushu.app/terms">hushu.app/terms</a>. Significant changes will be notified via the App or App Store version notes.</p>
+      <p>Your continued use of the App after changes constitutes acceptance of the modified Terms. If you do not agree to the changes, you must stop using the App.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">16 · Misc</div>
+      <h2>Severability and Entire Agreement</h2>
+      <p><strong>Severability:</strong> If any provision of these Terms is found to be unenforceable, the remaining provisions shall continue in full force and effect.</p>
+      <p><strong>Entire agreement:</strong> These Terms, together with our <a href="/privacy">Privacy Policy</a> and Apple's Licensed Application End User License Agreement, constitute the entire agreement between you and us regarding the App.</p>
+      <p><strong>No waiver:</strong> Our failure to enforce any right or provision will not be considered a waiver of that right or provision.</p>
+      <p><strong>Assignment:</strong> You may not assign or transfer your rights under these Terms without our prior written consent. We may assign our rights freely.</p>
+    </section>
+
+    <div class="contact-section">
+      <div class="label-eyebrow">Contact</div>
+      <h3>Questions about these Terms?</h3>
+      <a href="mailto:info@hushu.app" class="email">info@hushu.app</a>
+      <div class="meta-info">
+        Harun Tanyeri<br>
+        İzmir, Türkiye
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TURKISH CONTENT -->
+  <div id="content-tr" class="lang-content">
+
+    <div class="label-eyebrow">Yasal</div>
+    <h1>Kullanım Koşulları</h1>
+    <div class="meta">Yürürlük tarihi: 14 Mayıs 2026 · Son güncelleme: 14 Mayıs 2026</div>
+
+    <p class="intro">Bu Kullanım Koşulları ("Koşullar"), Hushu mobil uygulamasının ("Uygulama," "Hushu") kullanımını düzenler. Hushu'yu indirerek, yükleyerek veya kullanarak bu Koşullara bağlı kalmayı kabul edersiniz. Kabul etmiyorsanız, Uygulamayı kullanmayın.</p>
+
+    <p>Hushu, İzmir, Türkiye merkezli Harun Tanyeri tarafından sahiplenilip işletilmektedir ("biz," "bize," "bizim"). İletişim: <a href="mailto:info@hushu.app">info@hushu.app</a></p>
+
+    <section>
+      <div class="section-tag">01 · Kabul</div>
+      <h2>Kabul ve Uygunluk</h2>
+      <p>Hushu'yu kullanarak şunları onaylarsınız:</p>
+      <ul>
+        <li><strong>En az 18 yaşında</strong> veya yargı bölgenizdeki reşit yaşta olduğunuzu</li>
+        <li>Bağlayıcı sözleşmelere girmek için yasal ehliyetiniz olduğunu</li>
+        <li>ABD hükümeti ambargosu altındaki bir ülkede bulunmadığınızı</li>
+        <li>ABD hükümetinin yasaklı veya kısıtlı taraflar listesinde olmadığınızı</li>
+        <li>Uygulamayı tüm geçerli yasalara uygun olarak kullanacağınızı</li>
+      </ul>
+      <p>Bu uygunluk şartlarını karşılamıyorsanız Hushu'yu kullanamazsınız.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">02 · Lisans</div>
+      <h2>Hushu Kullanım Lisansı</h2>
+      <p>Bu Koşullara uymanız koşuluyla, sahip olduğunuz veya kontrol ettiğiniz cihazlarda Hushu'yu kişisel, ticari olmayan kullanım için indirmek, yüklemek ve kullanmak için <strong>sınırlı, münhasır olmayan, devredilemez, iptal edilebilir bir lisans</strong> veriyoruz.</p>
+      <p>Bu lisans şu hakları <strong>içermez</strong>:</p>
+      <ul>
+        <li>Uygulamayı değiştirme, uyarlama, çevirme, tersine mühendislik yapma, derleme veya çözme</li>
+        <li>Tescilli bildirimleri veya etiketleri kaldırma veya değiştirme</li>
+        <li>Önceden yazılı iznimiz olmadan herhangi bir ticari amaçla kullanma</li>
+        <li>Uygulamayı dağıtma, satma, kiralama veya alt lisans verme</li>
+        <li>Otomatik sistemler (bot, scraper) kullanma</li>
+        <li>Uygulamanın veya ilgili sistemlerin herhangi bir bölümüne yetkisiz erişim</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">03 · Abonelik</div>
+      <h2>Hushu+ Aboneliği</h2>
+      <p>Hushu, <strong>Hushu+</strong> adlı ücretli bir abonelik sunmaktadır:</p>
+      <ul>
+        <li><strong>Aylık:</strong> Otomatik yenilenen abonelik, aylık faturalandırılır</li>
+        <li><strong>Yıllık:</strong> Otomatik yenilenen abonelik, yıllık faturalandırılır</li>
+        <li><strong>Ömür Boyu:</strong> Tek seferlik satın alma, yenilenmez</li>
+      </ul>
+      <p>Abonelik koşulları:</p>
+      <ul>
+        <li><strong>Otomatik yenileme:</strong> Aylık ve Yıllık abonelikler, mevcut dönem sona ermeden en az 24 saat önce iptal edilmediği sürece her faturalandırma dönemi sonunda otomatik yenilenir</li>
+        <li><strong>Faturalandırma:</strong> Apple ID hesabınız, mevcut dönemin bitiminden 24 saat önce yenileme için ücretlendirilir</li>
+        <li><strong>Ücretsiz deneme:</strong> Sunulduğunda, ücretsiz deneme, sona ermeden iptal edilmediği sürece otomatik olarak ücretli aboneliğe dönüşür</li>
+        <li><strong>Fiyat değişiklikleri:</strong> Abonelik fiyatlarını değiştirebiliriz. Değişiklikler bildirim sonrası yenileme dönemlerinde uygulanır</li>
+      </ul>
+      <div class="callout">
+        <p>Aboneliğinizi şuradan yönetin veya iptal edin: <strong>iPhone Ayarlar → Apple ID → Subscriptions → Hushu+</strong></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-tag">04 · İade</div>
+      <h2>İade ve İptal</h2>
+      <p><strong>Tüm satın almalar kesindir.</strong> Ancak, iade talepleri Apple tarafından App Store iade politikası kapsamında yönetilir. Doğrudan iade işlemi yapmıyoruz.</p>
+      <p>Apple'dan iade talep etmek için:</p>
+      <ul>
+        <li><a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a> ziyaret edin</li>
+        <li>Veya doğrudan Apple Support ile iletişime geçin</li>
+      </ul>
+      <p>Aboneliğinizi iptal ederseniz, mevcut faturalandırma döneminin sonuna kadar Hushu+ özelliklerine erişiminiz devam eder. Kullanılmayan süre için kısmi iade yapılmaz.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">05 · Kabul Edilebilir Kullanım</div>
+      <h2>Kabul Edilebilir Kullanım ve Yasak Davranışlar</h2>
+      <p>Hushu'yu yalnızca yasal amaçlarla kullanmayı kabul edersiniz. Şunları <strong>yapmamayı</strong> kabul edersiniz:</p>
+      <ul>
+        <li>Geçerli yasaları, düzenlemeleri veya üçüncü taraf haklarını ihlal etme</li>
+        <li>Yasadışı, zararlı, tehditkar, kötüye kullanılan, taciz edici, iftira niteliğinde veya başka şekilde sakıncalı içerik yükleme veya oluşturma</li>
+        <li>Çocukları uygunsuz, istismarcı veya zararlı bağlamlarda gösteren içerik oluşturma</li>
+        <li>Herhangi bir kişi veya kuruluş gibi davranma</li>
+        <li>Uygulamanın işlevselliğine müdahale etme veya bozma</li>
+        <li>Yetkisiz olarak güvenlik önlemlerini aşmaya veya kısıtlı özelliklere erişmeye çalışma</li>
+        <li>Hushu'ya, kullanıcılarına veya üçüncü taraflara zarar verebilecek şekilde kullanma</li>
+      </ul>
+      <p>Bu Koşulları ihlal etmeniz durumunda Uygulamaya erişiminizi sonlandırma hakkını saklı tutarız.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">06 · Fikri Mülkiyet</div>
+      <h2>Fikri Mülkiyet</h2>
+      <p>Hushu uygulamasının tüm hakları, unvanları ve menfaatleri — kaynak kod, tasarım, logo, "Hushu" ve "Hushu+" adı, tipografi, temalar ve tüm ilgili materyaller dahil — yalnızca Harun Tanyeri'ye aittir ve telif hakkı, ticari marka ve diğer fikri mülkiyet yasaları ile korunmaktadır.</p>
+      <p>Bu Koşullardaki hiçbir şey, önceden yazılı iznimiz olmadan ticari markalarımızı, logolarımızı veya marka adlarımızı kullanma hakkı vermez.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">07 · İçeriğiniz</div>
+      <h2>İçeriğiniz</h2>
+      <p>Hushu içinde oluşturduğunuz veya sakladığınız tüm içeriğin — fotoğraflar, videolar, sesli notlar, yazılı entry'ler, mektuplar ve kişisel bilgiler ("İçeriğiniz") dahil — <strong>tam mülkiyetini</strong> korursunuz.</p>
+      <p>Hushu local-first bir uygulama olduğundan, İçeriğiniz cihazınızda saklanır ve <strong>bize iletilmez</strong>. İçeriğiniz üzerinde herhangi bir mülkiyet, lisans veya hak talep etmiyoruz.</p>
+      <p>Şunlardan <strong>yalnızca siz sorumlusunuz</strong>:</p>
+      <ul>
+        <li>Uygulama içinde oluşturduğunuz içerik</li>
+        <li>İçe aktardığınız tüm fotoğraf ve medyaya ilişkin haklara sahip olmanız</li>
+        <li>İçeriğinizin yedeklerini tutmak (iCloud Backup öneriyoruz)</li>
+        <li>İçeriğinizde başkalarının görüntülerini kullanırken gizlilik yasalarına uymanız</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">08 · Sorumluluk Reddi</div>
+      <h2>Sorumluluk Reddi ve Garantiler</h2>
+      <div class="warning-box">
+        <p>UYGULAMA, AÇIK VEYA ZIMNİ HİÇBİR GARANTİ OLMADAN "OLDUĞU GİBİ" VE "MEVCUT OLDUĞU ŞEKILDE" SAĞLANMAKTADIR.</p>
+      </div>
+      <p>Yasaların izin verdiği azami ölçüde, aşağıdakiler dahil ancak bunlarla sınırlı olmamak üzere tüm garantileri reddediyoruz:</p>
+      <ul>
+        <li>Ticari elverişlilik, belirli bir amaca uygunluk ve hak ihlali yapmama garantileri</li>
+        <li>Uygulamanın kesintisiz, hatasız, güvenli veya virüssüz olacağı</li>
+        <li>Uygulamadaki hataların düzeltileceği</li>
+        <li>Uygulamanın gereksinimlerinizi veya beklentilerinizi karşılayacağı</li>
+        <li>İçeriğinizin kaybı durumunda korunacağı veya kurtarılabileceği</li>
+        <li>Uygulama tarafından üretilen bilgilerin doğruluğu, güvenilirliği veya eksiksizliği</li>
+      </ul>
+      <p><strong>Hushu tıbbi, psikolojik, hukuki veya profesyonel bir danışmanlık hizmeti değildir.</strong> Hushu içindeki içeriğe profesyonel karar verme için güvenilmemelidir.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">09 · Sorumluluk</div>
+      <h2>Sorumluluk Sınırlaması</h2>
+      <div class="warning-box">
+        <p>YASALARIN İZİN VERDİĞİ AZAMİ ÖLÇÜDE, HİÇBİR DURUMDA — VERİ KAYBI, ANI KAYBI, KAR KAYBI VEYA DUYGUSAL SIKINTI DAHİL OLMAK ÜZERE — HERHANGİ BİR DOLAYLI, ARIZİ, ÖZEL, SONUÇSAL, CEZAİ VEYA ÖRNEK NİTELİĞİNDE TAZMİNATTAN SORUMLU OLMAYACAĞIZ.</p>
+      </div>
+      <p>Bu, aşağıdakilerden kaynaklanan zararları içerir ancak bunlarla sınırlı değildir:</p>
+      <ul>
+        <li>Uygulamayı kullanmanız veya kullanamamanız</li>
+        <li>İçeriğinizin kaybı, bozulması veya yok olması</li>
+        <li>Cihazınıza yetkisiz erişim</li>
+        <li>Uygulamadaki hatalar, bug'lar veya kesintiler</li>
+        <li>Uygulama ile ilgili herhangi bir üçüncü tarafın açıklamaları veya davranışları</li>
+        <li>Uygulamaya ilişkin diğer herhangi bir konu</li>
+      </ul>
+      <p>Bu Koşullardan veya Uygulamadan kaynaklanan tüm talepler için toplam toplu sorumluluğumuz, <strong>talepten önceki on iki (12) ay içinde Hushu+ için Apple'a ödediğiniz miktarla</strong> veya, ödeme yoksa, on ABD doları ($10.00) ile sınırlıdır.</p>
+      <p>Bazı yargı bölgeleri belirli garantilerin veya sorumluluk sınırlamalarının hariç tutulmasına izin vermez. Bu yargı bölgelerinde, yukarıdaki sınırlamalar yasaların izin verdiği azami ölçüde uygulanır.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">10 · Tazminat</div>
+      <h2>Tazminat</h2>
+      <p>Aşağıdakilerden kaynaklanan veya bunlarla ilgili her türlü talep, sorumluluk, zarar, kayıp, maliyet ve giderden (makul avukat ücretleri dahil) Hushu, Harun Tanyeri ve ilgili tarafları muaf tutmayı, savunmayı ve tazmin etmeyi kabul edersiniz:</p>
+      <ul>
+        <li>Bu Koşulları ihlal etmeniz</li>
+        <li>Uygulamayı kullanmanız veya kötüye kullanmanız</li>
+        <li>İçeriğiniz</li>
+        <li>Gizlilik veya fikri mülkiyet hakları dahil olmak üzere herhangi bir üçüncü taraf hakkını ihlal etmeniz</li>
+        <li>Geçerli yasa veya düzenlemeleri ihlal etmeniz</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">11 · Fesih</div>
+      <h2>Fesih</h2>
+      <p>Uygulamayı istediğiniz zaman kullanmayı bırakabilirsiniz. Tamamen sonlandırmak için Uygulamayı cihazınızdan silin ve Uygulama içindeki "Tüm verilerimi sil" özelliğini kullanın.</p>
+      <p>Aşağıdaki durumlarda Uygulamaya erişiminizi bildirimde bulunmadan herhangi bir zamanda askıya alabilir veya sonlandırabiliriz:</p>
+      <ul>
+        <li>Bu Koşulları ihlal etmeniz</li>
+        <li>Hileli veya yasadışı faaliyette bulunmanız</li>
+        <li>Yasa veya mahkeme kararı gerektirdiğinde</li>
+        <li>Uygulama hizmet dışı bırakıldığında</li>
+      </ul>
+      <p>Fesih üzerine, Uygulamayı kullanma lisansınız derhal sona erer. Sorumluluk reddi, sorumluluk sınırlamaları, tazminat, fikri mülkiyet ve geçerli hukuka ilişkin hükümler fesih sonrası geçerliliğini korur.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">12 · Apple</div>
+      <h2>Apple'a Özgü Hükümler</h2>
+      <p>Bu Koşulların Apple ile değil, sizinle Hushu (Harun Tanyeri) arasında olduğunu kabul edersiniz. Apple, Uygulama veya içeriğinden sorumlu değildir.</p>
+      <ul>
+        <li><strong>Bakım:</strong> Apple'ın Uygulama için herhangi bir bakım veya destek hizmeti sağlama yükümlülüğü yoktur</li>
+        <li><strong>Garanti:</strong> Uygulamanın geçerli bir garantiye uymaması durumunda Apple'a bildirimde bulunabilirsiniz; Apple satın alma bedelini iade eder; Apple'ın başka garanti yükümlülüğü yoktur</li>
+        <li><strong>Ürün talepleri:</strong> Apple değil, biz, ürün sorumluluğu, yasal uygunluk ve tüketici koruma talepleri dahil Uygulamaya ilişkin tüm talepleri ele almakla sorumluyuz</li>
+        <li><strong>Üçüncü taraf yararlanıcısı:</strong> Apple ve iştirakleri bu Koşulların üçüncü taraf yararlanıcılarıdır ve kabulünüz üzerine Apple, bu Koşulları size karşı uygulama hakkına sahiptir</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-tag">13 · Mücbir Sebep</div>
+      <h2>Mücbir Sebep</h2>
+      <p>Tanrı'nın eylemleri, doğal afetler, savaş, terörizm, salgın hastalıklar, hükümet eylemleri, internet veya telekomünikasyon arızaları, üçüncü taraf servis kesintileri veya diğer mücbir sebep olayları dahil ancak bunlarla sınırlı olmamak üzere, makul kontrolümüz dışındaki koşullardan kaynaklanan herhangi bir performans hatası veya gecikmeden sorumlu değiliz.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">14 · Geçerli Hukuk</div>
+      <h2>Geçerli Hukuk ve Uyuşmazlıklar</h2>
+      <p>Bu Koşullar, kanunlar ihtilafı ilkelerinden bağımsız olarak <strong>Türkiye Cumhuriyeti</strong> yasalarına tabidir ve bunlara göre yorumlanır.</p>
+      <p>Bu Koşullardan veya Uygulamadan kaynaklanan veya bunlarla ilgili herhangi bir uyuşmazlık, anlaşmazlık veya talep, münhasır yargı yetkisine sahip olan <strong>İzmir Mahkemeleri ve İcra Daireleri</strong>'nde çözülecektir.</p>
+      <p>Avrupa Birliği'ndeki tüketiciler için bu madde, yerel yargı bölgenizdeki yasal tüketici haklarını etkilemez.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">15 · Değişiklikler</div>
+      <h2>Bu Koşullardaki Değişiklikler</h2>
+      <p>Bu Koşulları zaman zaman değiştirebiliriz. En güncel sürüm her zaman <a href="https://hushu.app/terms">hushu.app/terms</a> adresinde mevcut olacaktır. Önemli değişiklikler Uygulama veya App Store sürüm notları aracılığıyla bildirilir.</p>
+      <p>Değişikliklerden sonra Uygulamayı kullanmaya devam etmeniz, değiştirilmiş Koşulları kabul ettiğiniz anlamına gelir. Değişiklikleri kabul etmiyorsanız, Uygulamayı kullanmayı bırakmalısınız.</p>
+    </section>
+
+    <section>
+      <div class="section-tag">16 · Diğer</div>
+      <h2>Bölünebilirlik ve Bütün Sözleşme</h2>
+      <p><strong>Bölünebilirlik:</strong> Bu Koşulların herhangi bir hükmünün uygulanamaz bulunması durumunda, kalan hükümler tam yürürlükte kalmaya devam edecektir.</p>
+      <p><strong>Bütün sözleşme:</strong> Bu Koşullar, <a href="/privacy">Gizlilik Politikamız</a> ve Apple'ın Lisanslı Uygulama Son Kullanıcı Lisans Sözleşmesi ile birlikte, Uygulamaya ilişkin sizinle aramızdaki tüm sözleşmeyi oluşturur.</p>
+      <p><strong>Feragat yok:</strong> Herhangi bir hak veya hükmü uygulamamamız, bu hakkın veya hükmün feragat edildiği anlamına gelmez.</p>
+      <p><strong>Devir:</strong> Önceden yazılı iznimiz olmadan bu Koşullar kapsamındaki haklarınızı devredemez veya aktaramazsınız. Biz haklarımızı serbestçe devredebiliriz.</p>
+    </section>
+
+    <div class="contact-section">
+      <div class="label-eyebrow">İletişim</div>
+      <h3>Bu Koşullar hakkında sorularınız mı var?</h3>
+      <a href="mailto:info@hushu.app" class="email">info@hushu.app</a>
+      <div class="meta-info">
+        Harun Tanyeri<br>
+        İzmir, Türkiye
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-mark">Hushu<span>+</span></div>
+  <div class="footer-links">
+    <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+  </div>
+  <div class="footer-meta">© 2026 Hushu · Memories that stay yours</div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-switch a').forEach(el => el.classList.remove('active'));
+    document.getElementById('content-' + lang).classList.add('active');
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.documentElement.lang = lang;
+    try { localStorage.setItem('hushu-lang', lang); } catch(e) {}
+    if (history.replaceState) { history.replaceState(null, null, '#' + lang); }
+  }
+  (function() {
+    const hash = window.location.hash.replace('#', '');
+    const saved = (function() { try { return localStorage.getItem('hushu-lang'); } catch(e) { return null; } })();
+    const lang = (hash === 'tr' || hash === 'en') ? hash : (saved || 'en');
+    setLang(lang);
+  })();
+</script>
+
+</body>
+</html>
