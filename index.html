@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f1e4">
+<meta name="description" content="Hushu — Hold every moment close. A warm, private keepsake app for your baby's whole story.">
+<title>Hushu — Hold every moment close.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* base — warm ivory */
+    --cream: #f7f1e4;
+    --cream-card: #fffdf6;
+
+    /* amber — primary accent (buttons, highlights) */
+    --honey: #e3a13d;
+    --honey-deep: #ad7822;
+    --honey-soft: #f7e1ab;
+    --honey-panel: #f0cd86;
+
+    /* sage — soft warm green */
+    --sage: #c8d3a0;
+    --sage-deep: #6c7f4c;
+    --sage-soft: #e2e8cd;
+
+    /* blush — soft warm peach */
+    --peach: #f0c3a8;
+    --peach-deep: #bc7553;
+    --peach-soft: #f9dccb;
+
+    /* dark — warm espresso */
+    --coffee: #352a1b;
+    --coffee-deep: #221a0f;
+
+    /* text */
+    --text: #3a2c1b;
+    --text-soft: #7c6c54;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
+    font-weight: 400;
+  }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+  em { font-style: normal; color: var(--honey-deep); }
+
+  .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 28px; position: relative; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; font-size: 15px;
+    padding: 15px 28px;
+    border-radius: 100px;
+    border: none; cursor: pointer;
+    transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s, background .2s;
+  }
+  .btn-dark { background: var(--coffee); color: var(--cream); }
+  .btn-dark:hover { transform: translateY(-3px); box-shadow: 0 12px 28px -8px rgba(47,36,23,.5); }
+  .btn-honey { background: var(--honey); color: var(--coffee); box-shadow: 0 8px 20px -6px rgba(227,161,61,.6); }
+  .btn-honey:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -6px rgba(227,161,61,.7); }
+  .btn-white { background: var(--white); color: var(--coffee); }
+  .btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 28px -8px rgba(47,36,23,.25); }
+  .btn-ghost { background: transparent; color: var(--text); padding: 15px 10px; }
+  .btn-ghost:hover { color: var(--honey-deep); }
+
+  .btn-app {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--coffee); color: var(--cream);
+    padding: 14px 26px; border-radius: 100px;
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+    box-shadow: 0 10px 26px -8px rgba(47,36,23,.45);
+  }
+  .btn-app:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -8px rgba(47,36,23,.55); }
+  .btn-app svg { width: 24px; height: 24px; }
+  .btn-app .at { display: flex; flex-direction: column; line-height: 1.05; text-align: left; }
+  .btn-app .at small { font-size: 10px; opacity: .7; font-weight: 400; }
+  .btn-app .at strong { font-size: 16px; font-weight: 600; font-family: 'Fredoka', sans-serif; }
+  .btn-app.light { background: var(--white); color: var(--coffee); }
+
+  /* ---------- blobs ---------- */
+  .blob {
+    position: absolute;
+    border-radius: 42% 58% 65% 35% / 45% 48% 52% 55%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  @keyframes blobFloat {
+    0%,100% { transform: translate(0,0) rotate(0deg) scale(1); }
+    50% { transform: translate(18px,-24px) rotate(14deg) scale(1.06); }
+  }
+  .blob.anim { animation: blobFloat 14s ease-in-out infinite; }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: fixed; top: 14px; left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px); max-width: 1140px;
+    z-index: 90;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px 12px 24px;
+    background: rgba(253,250,242,.82);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    border: 1px solid rgba(47,36,23,.07);
+    border-radius: 100px;
+    box-shadow: 0 8px 30px -12px rgba(47,36,23,.18);
+  }
+  .logo {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600; font-size: 26px;
+    color: var(--coffee);
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .logo-mark { height: 34px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 6px; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: var(--text-soft);
+    padding: 8px 14px; border-radius: 100px; transition: all .2s;
+  }
+  .nav-links a:hover { color: var(--coffee); background: rgba(47,36,23,.05); }
+  .nav-cta { display: flex; align-items: center; gap: 8px; }
+
+  /* ---------- language switcher ---------- */
+  .lang-switch { position: relative; }
+  .lang-current {
+    background: var(--white);
+    border: 1px solid rgba(47,36,23,.1);
+    border-radius: 100px;
+    padding: 9px 12px 9px 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px; font-weight: 600;
+    color: var(--coffee);
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: all .2s;
+    letter-spacing: .05em;
+  }
+  .lang-current:hover { background: var(--cream-card); border-color: rgba(47,36,23,.18); }
+  .lang-current svg { width: 12px; height: 12px; transition: transform .25s; }
+  .lang-switch.open .lang-current svg { transform: rotate(180deg); }
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 8px); right: 0;
+    background: var(--white);
+    border: 1px solid rgba(47,36,23,.08);
+    border-radius: 16px;
+    padding: 6px;
+    box-shadow: 0 16px 40px -10px rgba(47,36,23,.25);
+    min-width: 160px;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+    z-index: 100;
+  }
+  .lang-switch.open .lang-menu { opacity: 1; transform: none; pointer-events: auto; }
+  .lang-menu button {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%;
+    background: transparent; border: none;
+    padding: 9px 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px; font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background .15s;
+    text-align: left;
+  }
+  .lang-menu button:hover { background: var(--cream); }
+  .lang-menu button.active { background: var(--honey-soft); color: var(--coffee); font-weight: 600; }
+  .lang-menu button .lang-code {
+    font-family: 'Poppins', monospace;
+    font-size: 11px;
+    color: var(--text-soft);
+    letter-spacing: .08em;
+  }
+  .lang-menu button.active .lang-code { color: var(--honey-deep); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 170px 0 90px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .blob-1 { width: 480px; height: 480px; background: var(--honey-soft); top: -120px; right: -100px; opacity: .55; }
+  .hero .blob-2 { width: 340px; height: 340px; background: var(--sage-soft); bottom: -120px; left: -120px; opacity: .6; }
+  .hero .blob-3 { width: 180px; height: 180px; background: var(--peach-soft); top: 130px; left: 6%; opacity: .7; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr .95fr;
+    gap: 40px; align-items: center;
+    position: relative; z-index: 2;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white);
+    border: 1px solid rgba(47,36,23,.08);
+    padding: 8px 16px; border-radius: 100px;
+    font-size: 12px; font-weight: 600;
+    color: var(--honey-deep);
+    letter-spacing: .04em;
+    margin-bottom: 26px;
+    box-shadow: 0 4px 14px -6px rgba(47,36,23,.15);
+  }
+  .eyebrow .star { color: var(--honey); }
+  .hero h1 {
+    font-size: clamp(46px, 6.4vw, 86px);
+    color: var(--coffee);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em { color: var(--honey-deep); position: relative; }
+  .hero h1 em::after {
+    content: ''; position: absolute;
+    left: 0; right: 0; bottom: 4px; height: 12px;
+    background: var(--honey-soft);
+    border-radius: 100px; z-index: -1;
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--text-soft);
+    max-width: 460px; margin-bottom: 34px;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .hero-trust {
+    margin-top: 34px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14px; color: var(--text-soft);
+  }
+
+  /* hero phone art */
+  .hero-art {
+    position: relative;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 560px;
+  }
+  .hero-art .blob-big {
+    width: 420px; height: 420px;
+    background: linear-gradient(150deg, var(--honey) 0%, var(--peach) 100%);
+    opacity: .9;
+    z-index: 1;
+  }
+  .phone {
+    display: block;
+    filter: drop-shadow(0 30px 45px rgba(47,36,23,.28));
+    user-select: none; -webkit-user-drag: none;
+  }
+  .hero-art .phone {
+    position: relative; z-index: 3;
+    width: 290px;
+    transform: rotate(-3deg);
+    transition: transform .6s cubic-bezier(.2,.8,.2,1);
+  }
+  .hero-art .phone:hover { transform: rotate(0deg) translateY(-6px); }
+
+  .float-card {
+    position: absolute; z-index: 4;
+    background: var(--white);
+    border-radius: 18px;
+    padding: 12px 16px;
+    box-shadow: 0 14px 34px -10px rgba(47,36,23,.3);
+    display: flex; align-items: center; gap: 10px;
+    animation: cardFloat 6s ease-in-out infinite;
+  }
+  @keyframes cardFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  .float-card .fc-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .float-card .fc-icon svg { width: 18px; height: 18px; }
+  .float-card .fc-text { line-height: 1.2; }
+  .float-card .fc-text strong { font-family: 'Fredoka',sans-serif; font-size: 14px; font-weight: 600; color: var(--coffee); display: block; }
+  .float-card .fc-text span { font-size: 11px; color: var(--text-soft); }
+  .float-card.fc1 { top: 12%; left: -4%; }
+  .float-card.fc2 { bottom: 16%; right: -6%; animation-delay: -3s; }
+
+  /* ---------- panels ---------- */
+  .panel {
+    margin: 16px;
+    border-radius: 44px;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .panel-honey { background: var(--honey-panel); }
+  .panel-sage { background: var(--sage); }
+  .panel-peach { background: var(--peach); }
+  .panel-cream { background: var(--cream-card); }
+  .panel-dark { background: var(--coffee); }
+
+  .feat {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    position: relative; z-index: 2;
+  }
+  .feat.reverse .feat-text { order: 2; }
+  .feat.reverse .feat-art { order: 1; }
+  .feat-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 13px; font-weight: 600;
+    padding: 7px 16px; border-radius: 100px;
+    margin-bottom: 22px;
+    background: rgba(255,255,255,.55);
+  }
+  .feat-eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .feat h2 {
+    font-size: clamp(34px, 4.2vw, 58px);
+    color: var(--coffee);
+    margin-bottom: 20px;
+  }
+  .feat p.lead {
+    font-size: 17px; color: var(--text);
+    opacity: .82; max-width: 440px; margin-bottom: 26px;
+  }
+  .ticks { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .ticks li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--coffee); }
+  .tick {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .tick svg { width: 13px; height: 13px; stroke-width: 3.2; }
+
+  .feat-art {
+    position: relative;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 540px;
+  }
+  .feat-art .blob-bg {
+    width: 400px; height: 400px;
+    z-index: 1; opacity: .85;
+  }
+  .feat-art .phone { position: relative; z-index: 3; width: 270px; }
+  .feat-art .phone.solo { width: 300px; transform: rotate(-3deg); }
+  .feat-art .phone.duo-1 { transform: rotate(-7deg) translateX(28px); z-index: 3; }
+  .feat-art .phone.duo-2 { position: absolute; z-index: 2; width: 252px; transform: rotate(8deg) translateX(-78px); }
+
+  .panel-dark .feat h2 { color: var(--cream); }
+  .panel-dark .feat p.lead { color: var(--cream); opacity: .72; }
+  .panel-dark .feat-eyebrow { background: rgba(255,255,255,.08); color: var(--honey-soft); }
+  .panel-dark .ticks li { color: var(--cream); }
+  .panel-dark .tick { background: rgba(255,255,255,.12); }
+  .panel-dark em { color: var(--honey-soft); }
+
+  /* ---------- pricing ---------- */
+  .pricing { padding: 110px 0 60px; text-align: center; position: relative; overflow: hidden; }
+  .pricing .blob-p { width: 360px; height: 360px; background: var(--sage-soft); top: 40px; right: -140px; opacity: .5; }
+  .section-head { max-width: 620px; margin: 0 auto 56px; position: relative; z-index: 2; }
+  .section-head .feat-eyebrow { background: var(--white); color: var(--honey-deep); box-shadow: 0 4px 14px -6px rgba(47,36,23,.15); }
+  .section-head h2 { font-size: clamp(34px, 4.4vw, 56px); color: var(--coffee); margin-bottom: 14px; }
+  .section-head p { font-size: 17px; color: var(--text-soft); }
+  .price-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 20px; max-width: 980px; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+  .price-card {
+    background: var(--cream-card);
+    border: 2px solid rgba(47,36,23,.07);
+    border-radius: 32px;
+    padding: 38px 30px;
+    text-align: left;
+    display: flex; flex-direction: column;
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+  }
+  .price-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px -18px rgba(47,36,23,.25); }
+  .price-card.featured {
+    background: var(--honey);
+    border-color: var(--honey);
+    box-shadow: 0 24px 50px -18px rgba(227,161,61,.6);
+  }
+  .price-badge {
+    align-self: flex-start;
+    background: var(--coffee); color: var(--cream);
+    font-family: 'Fredoka',sans-serif; font-size: 11px; font-weight: 600;
+    padding: 5px 13px; border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .price-card h3 { font-size: 22px; color: var(--coffee); margin-bottom: 4px; }
+  .price-card .price-sub { font-size: 13px; color: var(--text-soft); margin-bottom: 20px; }
+  .price-card.featured .price-sub { color: rgba(47,36,23,.7); }
+  .price-amount { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; }
+  .price-amount .amt { font-family: 'Fredoka',sans-serif; font-size: 48px; font-weight: 600; color: var(--coffee); }
+  .price-amount .per { font-size: 14px; color: var(--text-soft); }
+  .price-card.featured .price-amount .per { color: rgba(47,36,23,.7); }
+  .price-note { font-size: 12px; color: var(--honey-deep); font-weight: 600; margin-bottom: 24px; }
+  .price-card.featured .price-note { color: var(--coffee); }
+  .price-feats { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; flex-grow: 1; }
+  .price-feats li { display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--text); }
+  .price-feats li svg { width: 16px; height: 16px; color: var(--honey-deep); flex-shrink: 0; stroke-width: 3; }
+  .price-card.featured .price-feats li svg { color: var(--coffee); }
+  .price-cta {
+    text-align: center; padding: 13px; border-radius: 100px;
+    font-family: 'Poppins',sans-serif; font-weight: 600; font-size: 14px;
+    cursor: pointer; transition: all .2s; border: none;
+    background: var(--coffee); color: var(--cream);
+  }
+  .price-cta:hover { transform: translateY(-2px); }
+  .price-card.featured .price-cta { background: var(--coffee); color: var(--cream); }
+
+  /* ---------- final CTA ---------- */
+  .final {
+    margin: 16px; border-radius: 44px;
+    background: linear-gradient(155deg, var(--honey-panel) 0%, var(--peach) 100%);
+    padding: 100px 28px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .final .blob-f1 { width: 300px; height: 300px; background: rgba(255,255,255,.25); top: -80px; left: -60px; }
+  .final .blob-f2 { width: 240px; height: 240px; background: rgba(47,36,23,.07); bottom: -90px; right: -50px; }
+  .final-inner { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+  .final h2 { font-size: clamp(38px, 5.2vw, 70px); color: var(--coffee); margin-bottom: 18px; }
+  .final p { font-size: 18px; color: rgba(47,36,23,.78); margin-bottom: 34px; }
+
+  /* ---------- footer ---------- */
+  .footer {
+    background: var(--coffee);
+    color: rgba(250,246,239,.65);
+    padding: 70px 0 36px;
+    margin-top: 16px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px; margin-bottom: 54px;
+  }
+  .footer .logo { color: var(--cream); margin-bottom: 16px; }
+  .footer-tag { font-size: 14px; max-width: 260px; line-height: 1.6; }
+  .footer h5 {
+    font-family: 'Fredoka',sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--honey-soft); margin-bottom: 16px;
+  }
+  .footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer ul a { font-size: 14px; transition: color .2s; }
+  .footer ul a:hover { color: var(--cream); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 26px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+    font-size: 13px; color: rgba(250,246,239,.45);
+  }
+  .footer-bottom .heart { color: var(--peach); }
+
+  /* ---------- reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal[data-d="1"] { transition-delay: .1s; }
+  .reveal[data-d="2"] { transition-delay: .2s; }
+  .reveal[data-d="3"] { transition-delay: .3s; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 920px) {
+    .nav-links { display: none; }
+    .hero { padding: 130px 0 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+    .hero .eyebrow, .hero-actions { justify-content: center; }
+    .hero-sub { margin-left: auto; margin-right: auto; }
+    .hero-trust { justify-content: center; }
+    .hero-art { min-height: 460px; }
+    .feat { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+    .feat.reverse .feat-text { order: 1; }
+    .feat.reverse .feat-art { order: 2; }
+    .feat-eyebrow, .feat .ticks { text-align: left; }
+    .feat .ticks { max-width: 380px; margin-left: auto; margin-right: auto; }
+    .feat p.lead { margin-left: auto; margin-right: auto; }
+    .feat-art { min-height: 440px; }
+    .price-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 540px) {
+    .container { padding: 0 20px; }
+    .panel { margin: 10px; border-radius: 32px; padding: 70px 0; }
+    .final { margin: 10px; border-radius: 32px; padding: 70px 22px; }
+    .hero h1 { font-size: 42px; }
+    .float-card.fc1 { left: 0; }
+    .float-card.fc2 { right: 0; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    .nav { padding: 10px 12px 10px 18px; }
+    .logo { font-size: 22px; }
+    .feat-art .phone.duo-2 { display: none; }
+    .feat-art .phone.duo-1 { transform: rotate(-3deg); }
+    .lang-current { padding: 8px 10px 8px 12px; font-size: 12px; }
+    .nav-cta .btn-honey { padding: 9px 14px !important; font-size: 12px !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="#" class="logo"><img class="logo-mark" src="screenshots/hushu-logo.png" alt="">hushu</a>
+  <div class="nav-links">
+    <a href="#books" data-i18n="nav_features">Features</a>
+    <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+    <a href="#privacy" data-i18n="nav_privacy">Privacy</a>
+  </div>
+  <div class="nav-cta">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-current" id="langBtn" aria-haspopup="true" aria-expanded="false">
+        <span id="langCode">EN</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button data-lang="en" role="menuitem"><span>English</span><span class="lang-code">EN</span></button>
+        <button data-lang="de" role="menuitem"><span>Deutsch</span><span class="lang-code">DE</span></button>
+        <button data-lang="tr" role="menuitem"><span>Türkçe</span><span class="lang-code">TR</span></button>
+        <button data-lang="es" role="menuitem"><span>Español</span><span class="lang-code">ES</span></button>
+        <button data-lang="pt" role="menuitem"><span>Português</span><span class="lang-code">PT</span></button>
+      </div>
+    </div>
+    <a href="https://apps.apple.com/app/hushu/id6764680135" target="_blank" rel="noopener" class="btn btn-honey" style="padding:11px 20px;font-size:14px;" data-i18n="nav_get">Get the app</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="blob blob-1 anim"></div>
+  <div class="blob blob-2 anim"></div>
+  <div class="blob blob-3 anim"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow reveal" data-i18n="hero_eyebrow"><span class="star">★</span> The baby keepsake app · Est. 2026</span>
+        <h1 class="reveal" data-d="1" data-i18n="hero_h1">Hold every <em>moment</em> close.</h1>
+        <p class="hero-sub reveal" data-d="2" data-i18n="hero_sub">From the first kick to the first step — Hushu turns your baby's whole story into a warm, private keepsake you'll treasure forever.</p>
+        <div class="hero-actions reveal" data-d="3">
+          <a href="https://apps.apple.com/app/hushu/id6764680135" target="_blank" rel="noopener" class="btn-app">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+            <span class="at"><small data-i18n="appstore_small">Download on the</small><strong data-i18n="appstore_big">App Store</strong></span>
+          </a>
+          <a href="#books" class="btn btn-ghost" data-i18n="hero_btn_explore">See how it works →</a>
+        </div>
+        <div class="hero-trust reveal" data-d="3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)" stroke-width="2" style="width:18px;height:18px;flex-shrink:0;"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span data-i18n="hero_trust">Private by design — no cloud, no ads, no account.</span>
+        </div>
+      </div>
+
+      <div class="hero-art reveal" data-d="2">
+        <div class="blob blob-big anim"></div>
+        <img class="phone" src="screenshots/image1_t.webp" alt="Hushu home screen">
+        <div class="float-card fc1">
+          <span class="fc-icon" style="background:var(--peach-soft);color:var(--peach-deep);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </span>
+          <span class="fc-text"><strong data-i18n="fc1_strong">Memory saved</strong><span data-i18n="fc1_sub">10 mo · 11 d old</span></span>
+        </div>
+        <div class="float-card fc2">
+          <span class="fc-icon" style="background:var(--sage-soft);color:var(--sage-deep);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/></svg>
+          </span>
+          <span class="fc-text"><strong data-i18n="fc2_strong">+0.2 kg</strong><span data-i18n="fc2_sub">growing right on track</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ BOOKS ============ -->
+<section class="panel panel-honey" id="books">
+  <div class="blob anim" style="width:300px;height:300px;background:rgba(255,255,255,.22);bottom:-100px;right:-60px;"></div>
+  <div class="container">
+    <div class="feat reveal">
+      <div class="feat-text">
+        <span class="feat-eyebrow"><span class="dot" style="background:var(--peach-deep);"></span><span data-i18n="books_eyebrow">Books &amp; Keepsakes</span></span>
+        <h2 data-i18n="books_h2">Turn memories into a <em>real book</em>.</h2>
+        <p class="lead" data-i18n="books_p">Every month, Hushu quietly gathers your photos and notes into a beautifully designed book — ready to keep, ready to print.</p>
+        <ul class="ticks">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="books_t1">Automatic monthly &amp; yearly books</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="books_t2">Print-ready PDF in one tap</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="books_t3">A real page-by-page reading experience</span></li>
+        </ul>
+      </div>
+      <div class="feat-art">
+        <div class="blob blob-bg anim" style="background:rgba(255,255,255,.3);"></div>
+        <img class="phone duo-2" src="screenshots/image3_t.webp" alt="Hushu book reader">
+        <img class="phone duo-1" src="screenshots/image2_t.webp" alt="Hushu library">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MILESTONES ============ -->
+<section class="panel panel-sage">
+  <div class="blob anim" style="width:260px;height:260px;background:rgba(255,255,255,.25);top:-80px;left:-60px;"></div>
+  <div class="container">
+    <div class="feat reverse reveal">
+      <div class="feat-text">
+        <span class="feat-eyebrow"><span class="dot" style="background:var(--sage-deep);"></span><span data-i18n="milestones_eyebrow">Milestones &amp; Growth</span></span>
+        <h2 data-i18n="milestones_h2">Capture every <em>first</em>.</h2>
+        <p class="lead" data-i18n="milestones_p">First smile, first tooth, first wobbly step. Tick off milestones and watch height &amp; weight grow on gentle, WHO-standard charts.</p>
+        <ul class="ticks">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="milestones_t1">13 milestones, plus your own</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="milestones_t2">Weight, height &amp; head tracking</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="milestones_t3">Calm charts — never clinical</span></li>
+        </ul>
+      </div>
+      <div class="feat-art">
+        <div class="blob blob-bg anim" style="background:rgba(255,255,255,.3);"></div>
+        <img class="phone duo-2" src="screenshots/image5_t.webp" alt="Hushu growth">
+        <img class="phone duo-1" src="screenshots/image4_t.webp" alt="Hushu milestones">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREGNANCY ============ -->
+<section class="panel panel-peach">
+  <div class="blob anim" style="width:280px;height:280px;background:rgba(255,255,255,.25);bottom:-90px;left:-70px;"></div>
+  <div class="container">
+    <div class="feat reveal">
+      <div class="feat-text">
+        <span class="feat-eyebrow"><span class="dot" style="background:var(--peach-deep);"></span><span data-i18n="preg_eyebrow">Pregnancy</span></span>
+        <h2 data-i18n="preg_h2">Your pregnancy, <em>week by week</em>.</h2>
+        <p class="lead" data-i18n="preg_p">Start your story before day one. Follow all 40 weeks, save belly photos and ultrasounds, and build a pregnancy book to match.</p>
+        <ul class="ticks">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--peach-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="preg_t1">Week-by-week countdown to the big day</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--peach-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="preg_t2">Belly photos &amp; bump measurements</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--peach-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="preg_t3">A keepsake book of the wait</span></li>
+        </ul>
+      </div>
+      <div class="feat-art">
+        <div class="blob blob-bg anim" style="background:rgba(255,255,255,.32);"></div>
+        <img class="phone solo" src="screenshots/image6_t.webp" alt="Hushu pregnancy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LETTERS ============ -->
+<section class="panel panel-cream">
+  <div class="blob anim" style="width:240px;height:240px;background:var(--honey-soft);top:-70px;right:-50px;opacity:.55;"></div>
+  <div class="container">
+    <div class="feat reverse reveal">
+      <div class="feat-text">
+        <span class="feat-eyebrow" style="background:var(--cream);"><span class="dot" style="background:var(--honey);"></span><span data-i18n="letters_eyebrow">Letters</span></span>
+        <h2 data-i18n="letters_h2">Write <em>letters</em> to your baby.</h2>
+        <p class="lead" data-i18n="letters_p">Little notes from today, for the grown person they'll become. Tucked away safely, gathered into a letter book they'll open one day.</p>
+        <ul class="ticks">
+          <li><span class="tick" style="background:var(--cream);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="letters_t1">Date-stamped, private letters</span></li>
+          <li><span class="tick" style="background:var(--cream);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="letters_t2">Collected into one letter book</span></li>
+          <li><span class="tick" style="background:var(--cream);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="letters_t3">For them to read when they're ready</span></li>
+        </ul>
+      </div>
+      <div class="feat-art">
+        <div class="blob blob-bg anim" style="background:var(--peach-soft);opacity:.7;"></div>
+        <img class="phone solo" src="screenshots/image7_t.webp" alt="Hushu letters">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVACY ============ -->
+<section class="panel panel-dark" id="privacy">
+  <div class="blob anim" style="width:320px;height:320px;background:rgba(227,161,61,.16);top:-110px;right:-80px;"></div>
+  <div class="container">
+    <div class="feat reveal">
+      <div class="feat-text">
+        <span class="feat-eyebrow"><span class="dot" style="background:var(--honey-soft);"></span><span data-i18n="privacy_eyebrow">Privacy first</span></span>
+        <h2 data-i18n="privacy_h2">Stays only on <em>your device</em>.</h2>
+        <p class="lead" data-i18n="privacy_p">Your baby's story is yours alone. Everything is encrypted right on your phone — no cloud, no accounts, no tracking, ever.</p>
+        <ul class="ticks">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-soft)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="privacy_t1">End-to-end on-device encryption</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-soft)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="privacy_t2">No account, no sign-up needed</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-soft)"><polyline points="5 12 10 17 19 7"/></svg></span><span data-i18n="privacy_t3">Zero ads, zero analytics</span></li>
+        </ul>
+      </div>
+      <div class="feat-art">
+        <div class="blob blob-bg anim" style="background:rgba(227,161,61,.22);"></div>
+        <img class="phone solo" src="screenshots/image8_t.webp" alt="Hushu privacy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="pricing" id="pricing">
+  <div class="blob blob-p anim"></div>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="feat-eyebrow"><span class="dot" style="background:var(--honey);"></span><span data-i18n="pricing_eyebrow">Simple pricing</span></span>
+      <h2 data-i18n="pricing_h2">Less than a single <em>keepsake book</em>.</h2>
+      <p data-i18n="pricing_p">Try it free for 7 days. Cancel anytime — your memories always stay yours.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <h3 data-i18n="price_monthly">Monthly</h3>
+        <p class="price-sub" data-i18n="price_monthly_sub">For trying things on.</p>
+        <div class="price-amount"><span class="amt">$4.99</span><span class="per" data-i18n="price_per_month">/ month</span></div>
+        <p class="price-note" data-i18n="price_monthly_note">Cancel anytime</p>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_monthly_f1">Unlimited photos &amp; videos</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_monthly_f2">Monthly auto books</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_monthly_f3">On-device encryption</span></li>
+        </ul>
+        <button class="price-cta" data-i18n="price_monthly_cta">Start monthly</button>
+      </div>
+      <div class="price-card featured reveal" data-d="1">
+        <span class="price-badge" data-i18n="price_badge">Best value · save 58%</span>
+        <h3 data-i18n="price_yearly">Yearly</h3>
+        <p class="price-sub" data-i18n="price_yearly_sub">The complete keepsake plan.</p>
+        <div class="price-amount"><span class="amt">$24.99</span><span class="per" data-i18n="price_per_year">/ year</span></div>
+        <p class="price-note" data-i18n="price_yearly_note">7-day free trial included</p>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_yearly_f1">Everything in Monthly</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_yearly_f2">Yearly keepsake book</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_yearly_f3">Pregnancy tracking</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_yearly_f4">Priority support</span></li>
+        </ul>
+        <button class="price-cta" data-i18n="price_yearly_cta">Start 7-day free trial</button>
+      </div>
+      <div class="price-card reveal" data-d="2">
+        <h3 data-i18n="price_lifetime">Lifetime</h3>
+        <p class="price-sub" data-i18n="price_lifetime_sub">Pay once, keep forever.</p>
+        <div class="price-amount"><span class="amt">$79.99</span><span class="per" data-i18n="price_per_once">once</span></div>
+        <p class="price-note" data-i18n="price_lifetime_note">All future updates included</p>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_lifetime_f1">Everything in Yearly</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_lifetime_f2">Unlimited baby profiles</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="5 12 10 17 19 7"/></svg><span data-i18n="price_lifetime_f3">Every future theme</span></li>
+        </ul>
+        <button class="price-cta" data-i18n="price_lifetime_cta">Buy lifetime</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final" id="download">
+  <div class="blob blob-f1 anim"></div>
+  <div class="blob blob-f2 anim"></div>
+  <div class="final-inner reveal">
+    <h2 data-i18n="final_h2">Start holding moments today.</h2>
+    <p data-i18n="final_p">Download Hushu free and keep your baby's story close — beautifully, privately, forever.</p>
+    <a href="https://apps.apple.com/app/hushu/id6764680135" target="_blank" rel="noopener" class="btn-app light" style="margin:0 auto;">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+      <span class="at"><small data-i18n="appstore_small">Download on the</small><strong data-i18n="appstore_big">App Store</strong></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="logo"><img class="logo-mark" src="screenshots/hushu-logo-light.png" alt="">hushu</a>
+        <p class="footer-tag" data-i18n="footer_tag">Memories are priceless. Hushu exists to keep them warm, safe and close.</p>
+      </div>
+      <div>
+        <h5 data-i18n="footer_product">Product</h5>
+        <ul>
+          <li><a href="#books" data-i18n="footer_features">Features</a></li>
+          <li><a href="#pricing" data-i18n="footer_pricing">Pricing</a></li>
+          <li><a href="#privacy" data-i18n="footer_privacy">Privacy</a></li>
+          <li><a href="https://apps.apple.com/app/hushu/id6764680135" target="_blank" rel="noopener" data-i18n="footer_download">Download</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 data-i18n="footer_company">Company</h5>
+        <ul>
+          <li><a href="#" data-i18n="footer_about">About</a></li>
+          <li><a href="#" data-i18n="footer_privacy_policy">Privacy Policy</a></li>
+          <li><a href="#" data-i18n="footer_terms">Terms</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 data-i18n="footer_hello">Say hello</h5>
+        <ul>
+          <li><a href="mailto:hello@hushu.app">hello@hushu.app</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hushu · studio.tanyeri.hushu</span>
+      <span data-i18n="footer_made_full">Made with <span class="heart">♥</span> in Izmir</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ============ i18n ============ */
+  const i18n = {
+    en: {
+      title: "Hushu — Hold every moment close.",
+      nav_features: "Features",
+      nav_pricing: "Pricing",
+      nav_privacy: "Privacy",
+      nav_get: "Get the app",
+      hero_eyebrow: '<span class="star">★</span> The baby keepsake app · Est. 2026',
+      hero_h1: 'Hold every <em>moment</em> close.',
+      hero_sub: "From the first kick to the first step — Hushu turns your baby's whole story into a warm, private keepsake you'll treasure forever.",
+      hero_btn_explore: "See how it works →",
+      hero_trust: "Private by design — no cloud, no ads, no account.",
+      appstore_small: "Download on the",
+      appstore_big: "App Store",
+      fc1_strong: "Memory saved",
+      fc1_sub: "10 mo · 11 d old",
+      fc2_strong: "+0.2 kg",
+      fc2_sub: "growing right on track",
+      books_eyebrow: "Books & Keepsakes",
+      books_h2: 'Turn memories into a <em>real book</em>.',
+      books_p: "Every month, Hushu quietly gathers your photos and notes into a beautifully designed book — ready to keep, ready to print.",
+      books_t1: "Automatic monthly & yearly books",
+      books_t2: "Print-ready PDF in one tap",
+      books_t3: "A real page-by-page reading experience",
+      milestones_eyebrow: "Milestones & Growth",
+      milestones_h2: 'Capture every <em>first</em>.',
+      milestones_p: "First smile, first tooth, first wobbly step. Tick off milestones and watch height & weight grow on gentle, WHO-standard charts.",
+      milestones_t1: "13 milestones, plus your own",
+      milestones_t2: "Weight, height & head tracking",
+      milestones_t3: "Calm charts — never clinical",
+      preg_eyebrow: "Pregnancy",
+      preg_h2: 'Your pregnancy, <em>week by week</em>.',
+      preg_p: "Start your story before day one. Follow all 40 weeks, save belly photos and ultrasounds, and build a pregnancy book to match.",
+      preg_t1: "Week-by-week countdown to the big day",
+      preg_t2: "Belly photos & bump measurements",
+      preg_t3: "A keepsake book of the wait",
+      letters_eyebrow: "Letters",
+      letters_h2: 'Write <em>letters</em> to your baby.',
+      letters_p: "Little notes from today, for the grown person they'll become. Tucked away safely, gathered into a letter book they'll open one day.",
+      letters_t1: "Date-stamped, private letters",
+      letters_t2: "Collected into one letter book",
+      letters_t3: "For them to read when they're ready",
+      privacy_eyebrow: "Privacy first",
+      privacy_h2: 'Stays only on <em>your device</em>.',
+      privacy_p: "Your baby's story is yours alone. Everything is encrypted right on your phone — no cloud, no accounts, no tracking, ever.",
+      privacy_t1: "End-to-end on-device encryption",
+      privacy_t2: "No account, no sign-up needed",
+      privacy_t3: "Zero ads, zero analytics",
+      pricing_eyebrow: "Simple pricing",
+      pricing_h2: 'Less than a single <em>keepsake book</em>.',
+      pricing_p: "Try it free for 7 days. Cancel anytime — your memories always stay yours.",
+      price_monthly: "Monthly",
+      price_monthly_sub: "For trying things on.",
+      price_per_month: "/ month",
+      price_monthly_note: "Cancel anytime",
+      price_monthly_f1: "Unlimited photos & videos",
+      price_monthly_f2: "Monthly auto books",
+      price_monthly_f3: "On-device encryption",
+      price_monthly_cta: "Start monthly",
+      price_badge: "Best value · save 58%",
+      price_yearly: "Yearly",
+      price_yearly_sub: "The complete keepsake plan.",
+      price_per_year: "/ year",
+      price_yearly_note: "7-day free trial included",
+      price_yearly_f1: "Everything in Monthly",
+      price_yearly_f2: "Yearly keepsake book",
+      price_yearly_f3: "Pregnancy tracking",
+      price_yearly_f4: "Priority support",
+      price_yearly_cta: "Start 7-day free trial",
+      price_lifetime: "Lifetime",
+      price_lifetime_sub: "Pay once, keep forever.",
+      price_per_once: "once",
+      price_lifetime_note: "All future updates included",
+      price_lifetime_f1: "Everything in Yearly",
+      price_lifetime_f2: "Unlimited baby profiles",
+      price_lifetime_f3: "Every future theme",
+      price_lifetime_cta: "Buy lifetime",
+      final_h2: "Start holding moments today.",
+      final_p: "Download Hushu free and keep your baby's story close — beautifully, privately, forever.",
+      footer_tag: "Memories are priceless. Hushu exists to keep them warm, safe and close.",
+      footer_product: "Product",
+      footer_features: "Features",
+      footer_pricing: "Pricing",
+      footer_privacy: "Privacy",
+      footer_download: "Download",
+      footer_company: "Company",
+      footer_about: "About",
+      footer_privacy_policy: "Privacy Policy",
+      footer_terms: "Terms",
+      footer_hello: "Say hello",
+      footer_made_full: 'Made with <span class="heart">♥</span> in Izmir'
+    },
+    de: {
+      title: "Hushu — Halte jeden Moment fest.",
+      nav_features: "Funktionen",
+      nav_pricing: "Preise",
+      nav_privacy: "Datenschutz",
+      nav_get: "App holen",
+      hero_eyebrow: '<span class="star">★</span> Die Baby-Erinnerungs-App · Est. 2026',
+      hero_h1: 'Halte jeden <em>Moment</em> fest.',
+      hero_sub: "Vom ersten Tritt bis zum ersten Schritt — Hushu verwandelt die ganze Geschichte deines Babys in ein warmes, privates Andenken, das ein Leben lang bleibt.",
+      hero_btn_explore: "So funktioniert es →",
+      hero_trust: "Privat im Design — keine Cloud, keine Werbung, kein Konto.",
+      appstore_small: "Laden im",
+      appstore_big: "App Store",
+      fc1_strong: "Erinnerung gespeichert",
+      fc1_sub: "10 Monate · 11 Tage alt",
+      fc2_strong: "+0,2 kg",
+      fc2_sub: "wächst genau richtig",
+      books_eyebrow: "Bücher & Andenken",
+      books_h2: 'Erinnerungen werden zum <em>echten Buch</em>.',
+      books_p: "Jeden Monat sammelt Hushu deine Fotos und Notizen leise in einem wunderschön gestalteten Buch — bereit zum Aufbewahren, bereit zum Drucken.",
+      books_t1: "Automatische Monats- und Jahresbücher",
+      books_t2: "Druckfertiges PDF mit einem Tippen",
+      books_t3: "Echtes Lese-Erlebnis, Seite für Seite",
+      milestones_eyebrow: "Meilensteine & Wachstum",
+      milestones_h2: 'Halte jedes <em>erste Mal</em> fest.',
+      milestones_p: "Erstes Lächeln, erster Zahn, erste wackelige Schritte. Hake Meilensteine ab und beobachte Größe & Gewicht in sanften, WHO-Standard-Diagrammen.",
+      milestones_t1: "13 Meilensteine, plus eigene",
+      milestones_t2: "Gewicht, Größe & Kopfumfang",
+      milestones_t3: "Ruhige Diagramme — nie klinisch",
+      preg_eyebrow: "Schwangerschaft",
+      preg_h2: 'Deine Schwangerschaft, <em>Woche für Woche</em>.',
+      preg_p: "Beginne deine Geschichte vor dem ersten Tag. Begleite alle 40 Wochen, speichere Bauchfotos und Ultraschallbilder und erstelle ein passendes Schwangerschaftsbuch.",
+      preg_t1: "Wochenweiser Countdown zum großen Tag",
+      preg_t2: "Bauchfotos & Bauchmessungen",
+      preg_t3: "Ein Andenkenbuch der Wartezeit",
+      letters_eyebrow: "Briefe",
+      letters_h2: 'Schreibe <em>Briefe</em> an dein Baby.',
+      letters_p: "Kleine Notizen von heute für die Person, die sie einmal sein werden. Sicher verwahrt, gesammelt in einem Briefbuch, das sie eines Tages öffnen werden.",
+      letters_t1: "Datierte, private Briefe",
+      letters_t2: "Gesammelt in einem Briefbuch",
+      letters_t3: "Zum Lesen, wenn sie bereit sind",
+      privacy_eyebrow: "Datenschutz zuerst",
+      privacy_h2: 'Bleibt nur auf <em>deinem Gerät</em>.',
+      privacy_p: "Die Geschichte deines Babys gehört nur dir. Alles wird direkt auf deinem Telefon verschlüsselt — keine Cloud, keine Konten, kein Tracking, niemals.",
+      privacy_t1: "Ende-zu-Ende-Verschlüsselung auf dem Gerät",
+      privacy_t2: "Keine Anmeldung erforderlich",
+      privacy_t3: "Null Werbung, null Analytik",
+      pricing_eyebrow: "Einfache Preise",
+      pricing_h2: 'Günstiger als ein einzelnes <em>Andenkenbuch</em>.',
+      pricing_p: "7 Tage kostenlos testen. Jederzeit kündbar — deine Erinnerungen bleiben immer dein.",
+      price_monthly: "Monatlich",
+      price_monthly_sub: "Zum Ausprobieren.",
+      price_per_month: "/ Monat",
+      price_monthly_note: "Jederzeit kündbar",
+      price_monthly_f1: "Unbegrenzt Fotos & Videos",
+      price_monthly_f2: "Monatliche Auto-Bücher",
+      price_monthly_f3: "Geräte-Verschlüsselung",
+      price_monthly_cta: "Monatlich starten",
+      price_badge: "Bestes Angebot · 58% sparen",
+      price_yearly: "Jährlich",
+      price_yearly_sub: "Der komplette Andenken-Plan.",
+      price_per_year: "/ Jahr",
+      price_yearly_note: "7 Tage kostenlos enthalten",
+      price_yearly_f1: "Alles aus Monatlich",
+      price_yearly_f2: "Jahres-Andenkenbuch",
+      price_yearly_f3: "Schwangerschafts-Tracking",
+      price_yearly_f4: "Priorisierter Support",
+      price_yearly_cta: "7-Tage-Test starten",
+      price_lifetime: "Lebenslang",
+      price_lifetime_sub: "Einmal zahlen, für immer behalten.",
+      price_per_once: "einmalig",
+      price_lifetime_note: "Alle zukünftigen Updates inklusive",
+      price_lifetime_f1: "Alles aus Jährlich",
+      price_lifetime_f2: "Unbegrenzte Baby-Profile",
+      price_lifetime_f3: "Alle zukünftigen Themes",
+      price_lifetime_cta: "Lebenslang kaufen",
+      final_h2: "Halte heute Momente fest.",
+      final_p: "Lade Hushu kostenlos herunter und bewahre die Geschichte deines Babys nah bei dir — wunderschön, privat, für immer.",
+      footer_tag: "Erinnerungen sind unbezahlbar. Hushu bewahrt sie warm, sicher und nah.",
+      footer_product: "Produkt",
+      footer_features: "Funktionen",
+      footer_pricing: "Preise",
+      footer_privacy: "Datenschutz",
+      footer_download: "Download",
+      footer_company: "Unternehmen",
+      footer_about: "Über uns",
+      footer_privacy_policy: "Datenschutzrichtlinie",
+      footer_terms: "AGB",
+      footer_hello: "Sag Hallo",
+      footer_made_full: 'Gemacht mit <span class="heart">♥</span> in Izmir'
+    },
+    tr: {
+      title: "Hushu — Her anı yakınında tut.",
+      nav_features: "Özellikler",
+      nav_pricing: "Fiyatlar",
+      nav_privacy: "Gizlilik",
+      nav_get: "Uygulamayı al",
+      hero_eyebrow: '<span class="star">★</span> Bebek anılar uygulaması · 2026',
+      hero_h1: 'Her <em>anı</em> yakınında tut.',
+      hero_sub: "İlk tekmeden ilk adıma — Hushu, bebeğinizin tüm hikâyesini sıcak, özel ve sonsuza dek saklayacağınız bir anı kitabına dönüştürür.",
+      hero_btn_explore: "Nasıl çalışır →",
+      hero_trust: "Tasarımdan gizlilik — bulut yok, reklam yok, hesap yok.",
+      appstore_small: "İndir",
+      appstore_big: "App Store",
+      fc1_strong: "Anı kaydedildi",
+      fc1_sub: "10 ay · 11 günlük",
+      fc2_strong: "+0,2 kg",
+      fc2_sub: "tam yolunda büyüyor",
+      books_eyebrow: "Kitaplar & Anılar",
+      books_h2: 'Anılar gerçek bir <em>kitaba</em> dönüşür.',
+      books_p: "Her ay Hushu fotoğraflarınızı ve notlarınızı sessizce güzel tasarlanmış bir kitapta toplar — saklamaya hazır, yazdırmaya hazır.",
+      books_t1: "Otomatik aylık ve yıllık kitaplar",
+      books_t2: "Tek dokunuşla yazdırılmaya hazır PDF",
+      books_t3: "Sayfa sayfa gerçek okuma deneyimi",
+      milestones_eyebrow: "Kilometre Taşları & Büyüme",
+      milestones_h2: 'Her <em>ilki</em> yakala.',
+      milestones_p: "İlk gülümseme, ilk diş, ilk titrek adım. Kilometre taşlarını işaretle, boy ve kilonun WHO standartlı sade grafiklerde büyümesini izle.",
+      milestones_t1: "13 kilometre taşı, üstüne kendi eklediklerin",
+      milestones_t2: "Kilo, boy ve baş çevresi takibi",
+      milestones_t3: "Sakin grafikler — asla klinik değil",
+      preg_eyebrow: "Hamilelik",
+      preg_h2: 'Hamileliğin, <em>hafta hafta</em>.',
+      preg_p: "Hikâyene daha ilk günden önce başla. 40 hafta boyunca takip et, karın fotoğraflarını ve ultrasonları sakla, eşleşen bir hamilelik kitabı oluştur.",
+      preg_t1: "Büyük güne hafta hafta geri sayım",
+      preg_t2: "Karın fotoğrafları ve karın ölçümleri",
+      preg_t3: "Beklemenin anı kitabı",
+      letters_eyebrow: "Mektuplar",
+      letters_h2: 'Bebeğine <em>mektuplar</em> yaz.',
+      letters_p: "Bugünden, yarınki büyümüş haline küçük notlar. Güvenle saklanır, bir gün açacakları tek bir mektup kitabında toplanır.",
+      letters_t1: "Tarihli, özel mektuplar",
+      letters_t2: "Tek bir mektup kitabında toplanır",
+      letters_t3: "Hazır olduklarında okusunlar diye",
+      privacy_eyebrow: "Önce gizlilik",
+      privacy_h2: 'Sadece <em>cihazında</em> kalır.',
+      privacy_p: "Bebeğinin hikâyesi sadece sana ait. Her şey doğrudan telefonunda şifrelenir — bulut yok, hesap yok, takip yok, asla.",
+      privacy_t1: "Cihazda uçtan uca şifreleme",
+      privacy_t2: "Hesap, kayıt gerekmez",
+      privacy_t3: "Sıfır reklam, sıfır analitik",
+      pricing_eyebrow: "Basit fiyatlandırma",
+      pricing_h2: 'Tek bir <em>anı kitabından</em> bile ucuz.',
+      pricing_p: "7 gün ücretsiz dene. İstediğin zaman iptal et — anıların hep senin kalır.",
+      price_monthly: "Aylık",
+      price_monthly_sub: "Denemek isteyenler için.",
+      price_per_month: "/ ay",
+      price_monthly_note: "İstediğin zaman iptal et",
+      price_monthly_f1: "Sınırsız fotoğraf ve video",
+      price_monthly_f2: "Aylık otomatik kitaplar",
+      price_monthly_f3: "Cihazda şifreleme",
+      price_monthly_cta: "Aylık başla",
+      price_badge: "En iyi değer · %58 tasarruf",
+      price_yearly: "Yıllık",
+      price_yearly_sub: "Eksiksiz anı planı.",
+      price_per_year: "/ yıl",
+      price_yearly_note: "7 gün ücretsiz deneme dahil",
+      price_yearly_f1: "Aylık'taki her şey",
+      price_yearly_f2: "Yıllık anı kitabı",
+      price_yearly_f3: "Hamilelik takibi",
+      price_yearly_f4: "Öncelikli destek",
+      price_yearly_cta: "7 gün ücretsiz başla",
+      price_lifetime: "Ömür Boyu",
+      price_lifetime_sub: "Tek seferlik öde, sonsuza dek sakla.",
+      price_per_once: "tek seferlik",
+      price_lifetime_note: "Tüm gelecek güncellemeler dahil",
+      price_lifetime_f1: "Yıllık'taki her şey",
+      price_lifetime_f2: "Sınırsız bebek profili",
+      price_lifetime_f3: "Tüm gelecek temalar",
+      price_lifetime_cta: "Ömür boyu satın al",
+      final_h2: "Anlarını bugün tutmaya başla.",
+      final_p: "Hushu'yu ücretsiz indir, bebeğinin hikâyesini yakınında tut — güzel, özel, sonsuza dek.",
+      footer_tag: "Anılar paha biçilmezdir. Hushu onları sıcak, güvenli ve yakın tutmak için var.",
+      footer_product: "Ürün",
+      footer_features: "Özellikler",
+      footer_pricing: "Fiyatlar",
+      footer_privacy: "Gizlilik",
+      footer_download: "İndir",
+      footer_company: "Şirket",
+      footer_about: "Hakkımızda",
+      footer_privacy_policy: "Gizlilik Politikası",
+      footer_terms: "Şartlar",
+      footer_hello: "Merhaba de",
+      footer_made_full: "İzmir'de <span class=\"heart\">♥</span> ile yapıldı"
+    },
+    es: {
+      title: "Hushu — Guarda cada momento.",
+      nav_features: "Funciones",
+      nav_pricing: "Precios",
+      nav_privacy: "Privacidad",
+      nav_get: "Obtén la app",
+      hero_eyebrow: '<span class="star">★</span> La app de recuerdos para bebés · Est. 2026',
+      hero_h1: 'Guarda cada <em>momento</em>.',
+      hero_sub: "Desde la primera patadita hasta el primer paso — Hushu convierte toda la historia de tu bebé en un recuerdo cálido y privado que atesorarás para siempre.",
+      hero_btn_explore: "Cómo funciona →",
+      hero_trust: "Privacidad por diseño — sin nube, sin anuncios, sin cuenta.",
+      appstore_small: "Descarga en",
+      appstore_big: "App Store",
+      fc1_strong: "Recuerdo guardado",
+      fc1_sub: "10 meses · 11 días",
+      fc2_strong: "+0,2 kg",
+      fc2_sub: "creciendo perfectamente",
+      books_eyebrow: "Libros y Recuerdos",
+      books_h2: 'Convierte recuerdos en un <em>libro real</em>.',
+      books_p: "Cada mes, Hushu reúne tus fotos y notas en un libro maravillosamente diseñado — listo para guardar, listo para imprimir.",
+      books_t1: "Libros mensuales y anuales automáticos",
+      books_t2: "PDF listo para imprimir con un toque",
+      books_t3: "Una verdadera experiencia de lectura página a página",
+      milestones_eyebrow: "Hitos y Crecimiento",
+      milestones_h2: 'Captura cada <em>primera vez</em>.',
+      milestones_p: "La primera sonrisa, el primer diente, el primer paso tambaleante. Marca hitos y ve crecer la altura y el peso en gráficos serenos del estándar OMS.",
+      milestones_t1: "13 hitos, más los tuyos propios",
+      milestones_t2: "Peso, altura y cabeza",
+      milestones_t3: "Gráficos serenos — nunca clínicos",
+      preg_eyebrow: "Embarazo",
+      preg_h2: 'Tu embarazo, <em>semana a semana</em>.',
+      preg_p: "Comienza tu historia antes del primer día. Sigue las 40 semanas, guarda fotos de la barriga y ecografías, y crea un libro de embarazo a juego.",
+      preg_t1: "Cuenta atrás semana a semana al gran día",
+      preg_t2: "Fotos y medidas de la barriga",
+      preg_t3: "Un libro de recuerdos de la espera",
+      letters_eyebrow: "Cartas",
+      letters_h2: 'Escribe <em>cartas</em> a tu bebé.',
+      letters_p: "Pequeñas notas de hoy, para la persona que serán mañana. Guardadas con seguridad, reunidas en un libro de cartas que abrirán algún día.",
+      letters_t1: "Cartas privadas con fecha",
+      letters_t2: "Reunidas en un libro de cartas",
+      letters_t3: "Para que las lean cuando estén listos",
+      privacy_eyebrow: "Privacidad ante todo",
+      privacy_h2: 'Solo en <em>tu dispositivo</em>.',
+      privacy_p: "La historia de tu bebé es solo tuya. Todo se cifra directamente en tu teléfono — sin nube, sin cuentas, sin seguimiento, nunca.",
+      privacy_t1: "Cifrado de extremo a extremo en el dispositivo",
+      privacy_t2: "Sin cuenta, sin registro",
+      privacy_t3: "Cero anuncios, cero analíticas",
+      pricing_eyebrow: "Precios simples",
+      pricing_h2: 'Menos que un solo <em>libro de recuerdos</em>.',
+      pricing_p: "Pruébalo gratis 7 días. Cancela cuando quieras — tus recuerdos siempre son tuyos.",
+      price_monthly: "Mensual",
+      price_monthly_sub: "Para probarlo.",
+      price_per_month: "/ mes",
+      price_monthly_note: "Cancela cuando quieras",
+      price_monthly_f1: "Fotos y videos ilimitados",
+      price_monthly_f2: "Libros automáticos mensuales",
+      price_monthly_f3: "Cifrado en el dispositivo",
+      price_monthly_cta: "Empezar mensual",
+      price_badge: "Mejor valor · ahorra 58%",
+      price_yearly: "Anual",
+      price_yearly_sub: "El plan completo de recuerdos.",
+      price_per_year: "/ año",
+      price_yearly_note: "7 días gratis incluidos",
+      price_yearly_f1: "Todo lo del plan Mensual",
+      price_yearly_f2: "Libro anual de recuerdos",
+      price_yearly_f3: "Seguimiento del embarazo",
+      price_yearly_f4: "Soporte prioritario",
+      price_yearly_cta: "Empezar prueba gratis",
+      price_lifetime: "De por vida",
+      price_lifetime_sub: "Paga una vez, consérvalo siempre.",
+      price_per_once: "pago único",
+      price_lifetime_note: "Todas las actualizaciones futuras incluidas",
+      price_lifetime_f1: "Todo lo del plan Anual",
+      price_lifetime_f2: "Perfiles de bebé ilimitados",
+      price_lifetime_f3: "Todos los temas futuros",
+      price_lifetime_cta: "Comprar de por vida",
+      final_h2: "Empieza a guardar momentos hoy.",
+      final_p: "Descarga Hushu gratis y mantén la historia de tu bebé cerca — bella, privada, para siempre.",
+      footer_tag: "Los recuerdos no tienen precio. Hushu existe para mantenerlos cálidos, seguros y cerca.",
+      footer_product: "Producto",
+      footer_features: "Funciones",
+      footer_pricing: "Precios",
+      footer_privacy: "Privacidad",
+      footer_download: "Descargar",
+      footer_company: "Empresa",
+      footer_about: "Nosotros",
+      footer_privacy_policy: "Política de Privacidad",
+      footer_terms: "Términos",
+      footer_hello: "Saluda",
+      footer_made_full: 'Hecho con <span class="heart">♥</span> en Izmir'
+    },
+    pt: {
+      title: "Hushu — Guarde cada momento.",
+      nav_features: "Recursos",
+      nav_pricing: "Preços",
+      nav_privacy: "Privacidade",
+      nav_get: "Baixar o app",
+      hero_eyebrow: '<span class="star">★</span> O app de recordações para bebês · Est. 2026',
+      hero_h1: 'Guarde cada <em>momento</em>.',
+      hero_sub: "Do primeiro chute ao primeiro passo — Hushu transforma toda a história do seu bebê em uma recordação calorosa e privada que você vai guardar para sempre.",
+      hero_btn_explore: "Como funciona →",
+      hero_trust: "Privacidade por design — sem nuvem, sem anúncios, sem conta.",
+      appstore_small: "Baixe na",
+      appstore_big: "App Store",
+      fc1_strong: "Memória salva",
+      fc1_sub: "10 meses · 11 dias",
+      fc2_strong: "+0,2 kg",
+      fc2_sub: "crescendo certinho",
+      books_eyebrow: "Livros e Recordações",
+      books_h2: 'Memórias viram um <em>livro de verdade</em>.',
+      books_p: "Todo mês, o Hushu reúne suas fotos e notas em um livro lindamente desenhado — pronto para guardar, pronto para imprimir.",
+      books_t1: "Livros mensais e anuais automáticos",
+      books_t2: "PDF pronto para imprimir em um toque",
+      books_t3: "Uma experiência de leitura página por página",
+      milestones_eyebrow: "Marcos e Crescimento",
+      milestones_h2: 'Capture cada <em>primeira vez</em>.',
+      milestones_p: "Primeiro sorriso, primeiro dente, primeiros passinhos. Marque os marcos e veja altura e peso crescerem em gráficos suaves no padrão da OMS.",
+      milestones_t1: "13 marcos, mais os seus próprios",
+      milestones_t2: "Peso, altura e cabeça",
+      milestones_t3: "Gráficos calmos — nunca clínicos",
+      preg_eyebrow: "Gravidez",
+      preg_h2: 'Sua gravidez, <em>semana a semana</em>.',
+      preg_p: "Comece a sua história antes do primeiro dia. Acompanhe todas as 40 semanas, salve fotos da barriga e ultrassons, e crie um livro de gravidez combinando.",
+      preg_t1: "Contagem regressiva semana a semana",
+      preg_t2: "Fotos e medidas da barriga",
+      preg_t3: "Um livro de recordações da espera",
+      letters_eyebrow: "Cartas",
+      letters_h2: 'Escreva <em>cartas</em> para seu bebê.',
+      letters_p: "Pequenas notas de hoje, para a pessoa que eles se tornarão. Guardadas com segurança, reunidas em um livro de cartas que eles abrirão um dia.",
+      letters_t1: "Cartas privadas com data",
+      letters_t2: "Reunidas em um livro de cartas",
+      letters_t3: "Para lerem quando estiverem prontos",
+      privacy_eyebrow: "Privacidade primeiro",
+      privacy_h2: 'Só fica no <em>seu dispositivo</em>.',
+      privacy_p: "A história do seu bebê é só sua. Tudo é criptografado direto no seu telefone — sem nuvem, sem contas, sem rastreamento, nunca.",
+      privacy_t1: "Criptografia ponta a ponta no dispositivo",
+      privacy_t2: "Sem conta, sem cadastro",
+      privacy_t3: "Zero anúncios, zero análises",
+      pricing_eyebrow: "Preços simples",
+      pricing_h2: 'Menos que um único <em>livro de recordação</em>.',
+      pricing_p: "Experimente grátis por 7 dias. Cancele quando quiser — suas memórias sempre são suas.",
+      price_monthly: "Mensal",
+      price_monthly_sub: "Para experimentar.",
+      price_per_month: "/ mês",
+      price_monthly_note: "Cancele quando quiser",
+      price_monthly_f1: "Fotos e vídeos ilimitados",
+      price_monthly_f2: "Livros automáticos mensais",
+      price_monthly_f3: "Criptografia no dispositivo",
+      price_monthly_cta: "Começar mensal",
+      price_badge: "Melhor valor · economize 58%",
+      price_yearly: "Anual",
+      price_yearly_sub: "O plano completo de recordações.",
+      price_per_year: "/ ano",
+      price_yearly_note: "7 dias grátis incluídos",
+      price_yearly_f1: "Tudo do Mensal",
+      price_yearly_f2: "Livro anual de recordações",
+      price_yearly_f3: "Acompanhamento da gravidez",
+      price_yearly_f4: "Suporte prioritário",
+      price_yearly_cta: "Começar teste grátis",
+      price_lifetime: "Vitalício",
+      price_lifetime_sub: "Pague uma vez, guarde para sempre.",
+      price_per_once: "pagamento único",
+      price_lifetime_note: "Todas as atualizações futuras incluídas",
+      price_lifetime_f1: "Tudo do Anual",
+      price_lifetime_f2: "Perfis de bebê ilimitados",
+      price_lifetime_f3: "Todos os temas futuros",
+      price_lifetime_cta: "Comprar vitalício",
+      final_h2: "Comece a guardar momentos hoje.",
+      final_p: "Baixe o Hushu grátis e mantenha a história do seu bebê pertinho — linda, privada, para sempre.",
+      footer_tag: "Memórias não têm preço. O Hushu existe para mantê-las quentes, seguras e pertinho.",
+      footer_product: "Produto",
+      footer_features: "Recursos",
+      footer_pricing: "Preços",
+      footer_privacy: "Privacidade",
+      footer_download: "Baixar",
+      footer_company: "Empresa",
+      footer_about: "Sobre",
+      footer_privacy_policy: "Política de Privacidade",
+      footer_terms: "Termos",
+      footer_hello: "Diga oi",
+      footer_made_full: 'Feito com <span class="heart">♥</span> em Izmir'
+    }
+  };
+
+  const LANG_LABELS = { en: "EN", de: "DE", tr: "TR", es: "ES", pt: "PT" };
+
+  function applyLang(lang) {
+    if (!i18n[lang]) lang = 'en';
+    const dict = i18n[lang];
+    document.documentElement.lang = lang;
+    document.title = dict.title;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      const val = dict[key];
+      if (val == null) return;
+      if (val.indexOf('<') >= 0) el.innerHTML = val;
+      else el.textContent = val;
+    });
+
+    document.getElementById('langCode').textContent = LANG_LABELS[lang];
+    document.querySelectorAll('.lang-menu button').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    try { localStorage.setItem('hushu-lang', lang); } catch (e) {}
+  }
+
+  /* lang switcher dropdown */
+  const langSwitch = document.getElementById('langSwitch');
+  const langBtn = document.getElementById('langBtn');
+  langBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langSwitch.classList.toggle('open');
+    langBtn.setAttribute('aria-expanded', langSwitch.classList.contains('open'));
+  });
+  document.addEventListener('click', () => {
+    langSwitch.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', 'false');
+  });
+  document.querySelectorAll('.lang-menu button').forEach(b => {
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      applyLang(b.dataset.lang);
+      langSwitch.classList.remove('open');
+      langBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* boot — default EN, or saved choice */
+  let saved = 'en';
+  try { saved = localStorage.getItem('hushu-lang') || 'en'; } catch (e) {}
+  applyLang(saved);
+
+  /* scroll reveal */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
